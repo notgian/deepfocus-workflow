@@ -16,12 +16,14 @@ npm run dev
 npm run start
 ```
 
+## Entities
+- User 
+    > this holds the last note as well
+- UserNotes
+- UserWorkTimes (?)
 
+## The DeepFocus Workflow: "The Cognitive Loop"
 
-
-
-
-The DeepFocus Workflow: "The Cognitive Loop"
 1. The Context Sync (The "Battery Check")
 Action: The app syncs with your Google Calendar (or .ics upload).
 Result: It calculates your Social Battery for the day. If you have 4 hours of meetings, your battery is "Low." If your day is clear, it’s "High."
@@ -41,3 +43,20 @@ Low Battery? 20-minute Micro-sprint with a mandatory "no-screen" break suggested
 4. The Brain Dump (The "Save Game")
 Action: When the user "Checks Out," you type one messy sentence about what you just did or what’s blocking you.
 Result: The app saves this "State." Our AI cleans up your messy note into a professional "Mission Brief" that will be waiting for you the next time you pick up this project.
+
+## "Tabs"
+
+### Dashboard
+- Social battery
+- Events/meetings for the day [TODAY]
+- The Mission Brief
+
+### Notes & Links
+- Links as a special note
+
+### Focus Timer
+
+## What to Do
+- UI
+- User/login
+- Database
