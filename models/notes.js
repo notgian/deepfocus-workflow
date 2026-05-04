@@ -1,26 +1,28 @@
 const mongoose = require('mongoose');
 
 /**
- * Each user can have a collection of notes.
- * Each user's notes are stored as subdocuments
- * in an array
+ * Each user can have a collection of notes per project.
+ * Each user's notes are stored as a separate document.
  */
-const Notes = new mongoose.Schema({
+const Note = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 
         required: true
     },
-    notes: [{
-        title: {
-            type: String,
-            default: 'New Note',
-        },
-        content: {
-            type: String,
-            default: '',
-        },
-    }]
+    projectId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project', 
+        required: true
+    },
+    title: {
+        type: String,
+        default: 'New Note',
+    },
+    content: {
+        type: String,
+        default: '',
+    }
 });
 
-module.exports = mongoose.model('Notes', Notes);
+module.exports = mongoose.model('Note', Note);

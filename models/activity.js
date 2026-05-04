@@ -12,11 +12,15 @@ const Activity = new mongoose.Schema({
         ref: 'User', 
         required: true
     },
+    projectId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project', 
+        required: true
+    },
     date: {
         type: Date,
         required: true
     },
-
     // record actual start and end times separately
     // from the focus period's length, in case the
     // timer is paused
