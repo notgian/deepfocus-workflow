@@ -20,7 +20,7 @@ npm run start
 - User 
     > this holds the last note as well
 - UserNotes
-- UserWorkTimes (?)
+- UserActivity (?)
 
 ## The DeepFocus Workflow: "The Cognitive Loop"
 
