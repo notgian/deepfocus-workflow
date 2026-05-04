@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> {{ title }} </title>
+        {{#each css}}
+            <link href="{{this}}" rel="stylesheet">
+        {{/each}}
+
+        <script src="https://kit.fontawesome.com/6c93d5a3f5.js" crossorigin="anonymous"></script>
+
+        {{#each js}}
+            <script defer src="{{this}}"></script>
+        {{/each}}
+    </head>
+    <body>
+        <main class='wrapper'>
+        </main>
+        {{{ body }}}
+    </body>
+</html>
+
