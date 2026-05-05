@@ -2,11 +2,13 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const http = require ('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
-// const http = require ('http');
+dotenv.config()
 
 const app = express()
+const passportSetup = require('./config/passport-setup')
 
 /* load values from dotenv file
  * the following are the expected keys
@@ -21,23 +23,34 @@ const app = express()
  */
 dotenv.config()
 
+// Connect to MongoDB
+const mongoURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_CLUSTER}/${process.env.DB_DEV}?retryWrites=true&w=majority`;
+
+mongoose.connect(mongoURI).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((err) => {
+    console.error('Error connecting to MongoDB: ', err);
+});
+
 app.engine('hbs', hbs.engine({extname:'hbs'}));
 app.set('view engine', 'hbs');
 app.use(express.static('./public'));
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         maxAge: null,
-//         httpOnly: true,
-//     }
-// }));
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: null,
+        httpOnly: true,
+    }
+}));
 
 app.use(express.json())
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import routes
 // I just copied this from a prev project, replace w/ the actual routes
@@ -69,5 +82,7 @@ app.use( ( req, res, next ) => {
   });
 });
 
-app.listen(process.env.APP_PORT)
+app.listen(process.env.APP_PORT, () => {
+    console.log(`Server is running on port ${process.env.APP_PORT}`);
+});
 
