@@ -46,11 +46,14 @@ app.use(express.json())
 // construct the routes
 const mainRouter = express.Router();
 // mainRouter.use('/auth', mainRouter);
-// mainRouter.use('/signup', mainRouter);
-// mainRouter.use('/dash', mainRouter);
+// mainRouter.use('/projects', mainRouter);  // 
+// mainRouter.use('/settings', mainRouter);  // This 
+// mainRouter.use('/analytics', mainRouter);  // This 
+// mainRouter.use('/calendar', mainRouter);  // This 
 // mainRouter.use('/:projectid/', mainRouter);
-// mainRouter.use('/:projectid/notes', mainRouter);
+// mainRouter.use('/:projectid/brief', mainRouter);
 // mainRouter.use('/:projectid/focus', mainRouter);
+// mainRouter.use('/:projectid/notes', mainRouter);
 
 // Home page of the website, not the app
 app.use('/', mainRouter);
