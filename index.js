@@ -2,9 +2,9 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const http = require ('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
+// const http = require ('http');
 
 const app = express()
 
@@ -21,21 +21,11 @@ const app = express()
  */
 dotenv.config()
 
-// Import routes
-// I just copied this from a prev project, replace w/ the actual routes
-// const importedRoute1 = require('./routes/routesFile1.js')
-
-// Routing for all API v1 stuff
-const mainRouter = express.Router();
-// I just copied this from a prev project, replace w/ the actual routes
-// mainRouter.use('/route1', importedRoute1);
-app.use('/', mainRouter);
 app.engine('hbs', hbs.engine({extname:'hbs'}));
 app.set('view engine', 'hbs');
 app.use(express.static('./public'));
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
-
 // app.use(session({
 //     secret: process.env.SESSION_SECRET,
 //     resave: false,
@@ -47,6 +37,25 @@ app.use(bodyParser.urlencoded({extended: true}))
 // }));
 
 app.use(express.json())
+
+
+// Import routes
+// I just copied this from a prev project, replace w/ the actual routes
+// const importedRoute1 = require('./routes/routesFile1.js')
+
+// construct the routes
+const mainRouter = express.Router();
+// mainRouter.use('/auth', mainRouter);
+// mainRouter.use('/signup', mainRouter);
+// mainRouter.use('/dash', mainRouter);
+// mainRouter.use('/:projectid/', mainRouter);
+// mainRouter.use('/:projectid/notes', mainRouter);
+// mainRouter.use('/:projectid/focus', mainRouter);
+
+// Home page of the website, not the app
+app.use('/', mainRouter);
+// If we want another section for about or not ig
+// app.use('/about', mainRouter);
 
 // 404 page. Currently returns a json object
 app.use( ( req, res, next ) => {
