@@ -9,7 +9,6 @@ homeRoute.get('/', (req, res) => {
     })
 });
 
-
 module.exports = {
-    homeRoute: homeRoute
+    homeRouter: homeRoute
 }

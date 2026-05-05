@@ -2,11 +2,13 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const http = require ('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
-const passport = require('passport')
+<<<<<<< HEAD
+// const http = require ('http');
+=======
 dotenv.config()
+>>>>>>> origin/auth
 
 const app = express()
 const passportSetup = require('./config/passport-setup')
@@ -22,8 +24,9 @@ const passportSetup = require('./config/passport-setup')
  * DB_DEV:          Dev database
  *
  */
-dotenv.config()
 
+<<<<<<< HEAD
+=======
 // Connect to MongoDB
 const mongoURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_CLUSTER}/${process.env.DB_DEV}?retryWrites=true&w=majority`;
 
@@ -33,11 +36,23 @@ mongoose.connect(mongoURI).then(() => {
     console.error('Error connecting to MongoDB: ', err);
 });
 
+>>>>>>> origin/auth
 app.engine('hbs', hbs.engine({extname:'hbs'}));
 app.set('view engine', 'hbs');
 app.use(express.static('./public'));
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
+<<<<<<< HEAD
+// app.use(session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         maxAge: null,
+//         httpOnly: true,
+//     }
+// }));
+=======
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -48,6 +63,7 @@ app.use(session({
         httpOnly: true,
     }
 }));
+>>>>>>> origin/auth
 
 app.use(express.json())
 app.use(passport.initialize());
@@ -56,11 +72,25 @@ app.use(passport.session());
 // Import routes
 // I just copied this from a prev project, replace w/ the actual routes
 // const importedRoute1 = require('./routes/routesFile1.js')
-const { homeRouter } = require('./routes/home.js')
-const { authRouter } = require('./routes/auth.js')
+const authRouter = require('./routes/authRoute.js')
+
+// Routing for all API v1 stuff
+const mainRouter = express.Router();
+
+// Rputes
+mainRouter.use('/auth', authRouter);
+
+app.use('/', mainRouter);
+
+
+
+// Import routes
+// I just copied this from a prev project, replace w/ the actual routes
+// const importedRoute1 = require('./routes/routesFile1.js')
+const { homeRoute } = require('./routes/home.js')
 
 // construct the routes
-app.use('/auth', authRouter);
+// app.use('/auth', mainRouter);
 // app.use('/projects', mainRouter);  // 
 // app.use('/settings', mainRouter);  // This 
 // app.use('/analytics', mainRouter);  // This 
@@ -69,7 +99,7 @@ app.use('/auth', authRouter);
 // app.use('/:projectid/brief', mainRouter);
 // app.use('/:projectid/focus', mainRouter);
 // app.use('/:projectid/notes', mainRouter);
-app.use('/', homeRouter);
+app.use('/', homeRoute);
 
 // Home page of the website, not the app
 // If we want another section for about or not ig
