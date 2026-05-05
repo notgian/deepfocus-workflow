@@ -6,30 +6,21 @@ const mongoose = require('mongoose');
  * can be determined later on.
  */
 const User = new mongoose.Schema({
+    // different from the internal id
+    googleId: {
+        type: String,
+        unique: true,
+    },
+    // obtain the fields below from the google
+    // account if we can.
+    displayName: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
         unique: true,
-    },
-
-    // Local Auth Fields
-    // For when account is created w/o Google
-    local: {
-        password: {
-            type: String,
-            select: false
-        },
-    },
-
-    // Google Auth Fields
-    // no need for password
-    google: {
-        id: {
-            type: String,
-            unique: true,
-            sparse: true
-        },
-        token: String 
     }
 });
 
