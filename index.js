@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const http = require ('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
+dotenv.config()
 
 const app = express()
+const passportSetup = require('./config/passport-setup')
 
 /* load values from dotenv file
  * the following are the expected keys
@@ -19,34 +21,47 @@ const app = express()
  * DB_DEV:          Dev database
  *
  */
-dotenv.config()
 
-// Import routes
-// I just copied this from a prev project, replace w/ the actual routes
-// const importedRoute1 = require('./routes/routesFile1.js')
+// Connect to MongoDB
+const mongoURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_CLUSTER}/${process.env.DB_DEV}?retryWrites=true&w=majority`;
 
-// Routing for all API v1 stuff
-const mainRouter = express.Router();
-// I just copied this from a prev project, replace w/ the actual routes
-// mainRouter.use('/route1', importedRoute1);
-app.use('/', mainRouter);
+mongoose.connect(mongoURI).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((err) => {
+    console.error('Error connecting to MongoDB: ', err);
+});
+
 app.engine('hbs', hbs.engine({extname:'hbs'}));
 app.set('view engine', 'hbs');
 app.use(express.static('./public'));
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         maxAge: null,
-//         httpOnly: true,
-//     }
-// }));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: null,
+        httpOnly: true,
+    }
+}));
 
 app.use(express.json())
+
+// Import routes
+// I just copied this from a prev project, replace w/ the actual routes
+// const importedRoute1 = require('./routes/routesFile1.js')
+const authRouter = require('./routes/authRoute.js')
+
+// Routing for all API v1 stuff
+const mainRouter = express.Router();
+
+// Rputes
+mainRouter.use('/auth', authRouter);
+
+app.use('/', mainRouter);
+
 
 // 404 page. Currently returns a json object
 app.use( ( req, res, next ) => {
@@ -57,5 +72,7 @@ app.use( ( req, res, next ) => {
   });
 });
 
-app.listen(process.env.APP_PORT)
+app.listen(process.env.APP_PORT, () => {
+    console.log(`Server is running on port ${process.env.APP_PORT}`);
+});
 
