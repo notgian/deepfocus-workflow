@@ -48,6 +48,8 @@ app.use(session({
 }));
 
 app.use(express.json())
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import routes
 // I just copied this from a prev project, replace w/ the actual routes
