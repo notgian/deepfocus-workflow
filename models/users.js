@@ -12,6 +12,8 @@ const User = new mongoose.Schema({
         unique: true,
     },
 
+    displayName: String,
+
     // Local Auth Fields
     // For when account is created w/o Google
     local: {
