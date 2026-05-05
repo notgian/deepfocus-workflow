@@ -1,0 +1,161 @@
+:root {
+    --primary-black: #0f172a;
+    --primary-blue: #4f46e5;
+    --text-gray: #4b5563;
+    --bg-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-black);
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    padding: 2rem 4rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-placeholder {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    border-radius: 50%; /* Just to make the empty tag visible */
+}
+
+.brand-name {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+/* Content Section */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #4f46e5, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    color: var(--text-gray);
+    max-width: 450px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Button */
+.google-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 32px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.google-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.g-icon {
+    width: 20px;
+}
+
+/* Trust Badge */
+.trust-badge {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    max-width: 300px;
+    text-align: left;
+}
+
+.lock-icon {
+    background: #f1f5f9;
+    padding: 8px;
+    border-radius: 8px;
+    color: #6366f1;
+}
+
+/* Swag: Animated Waves */
+.wave-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.wave {
+    position: absolute;
+    bottom: -50px;
+    left: -50%;
+    width: 200%;
+    height: 400px;
+    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    border-radius: 43%;
+    animation: drift 15s infinite linear;
+}
+
+.wave2 {
+    animation: drift 20s infinite linear;
+    opacity: 0.5;
+    background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+    bottom: -80px;
+}
+
+.wave3 {
+    animation: drift 25s infinite linear;
+    opacity: 0.3;
+    bottom: -100px;
+}
+
+@keyframes drift {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

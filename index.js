@@ -42,21 +42,21 @@ app.use(express.json())
 // Import routes
 // I just copied this from a prev project, replace w/ the actual routes
 // const importedRoute1 = require('./routes/routesFile1.js')
+const { homeRoute } = require('./routes/home.js')
 
 // construct the routes
-const mainRouter = express.Router();
-// mainRouter.use('/auth', mainRouter);
-// mainRouter.use('/projects', mainRouter);  // 
-// mainRouter.use('/settings', mainRouter);  // This 
-// mainRouter.use('/analytics', mainRouter);  // This 
-// mainRouter.use('/calendar', mainRouter);  // This 
-// mainRouter.use('/:projectid/', mainRouter);
-// mainRouter.use('/:projectid/brief', mainRouter);
-// mainRouter.use('/:projectid/focus', mainRouter);
-// mainRouter.use('/:projectid/notes', mainRouter);
+// app.use('/auth', mainRouter);
+// app.use('/projects', mainRouter);  // 
+// app.use('/settings', mainRouter);  // This 
+// app.use('/analytics', mainRouter);  // This 
+// app.use('/calendar', mainRouter);  // This 
+// app.use('/:projectid/', mainRouter);
+// app.use('/:projectid/brief', mainRouter);
+// app.use('/:projectid/focus', mainRouter);
+// app.use('/:projectid/notes', mainRouter);
+app.use('/', homeRoute);
 
 // Home page of the website, not the app
-app.use('/', mainRouter);
 // If we want another section for about or not ig
 // app.use('/about', mainRouter);
 
