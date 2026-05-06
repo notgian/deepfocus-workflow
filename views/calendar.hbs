@@ -54,9 +54,9 @@
 
         <section class="dashboard-grid">
 
-            <!-- LEFT: Calendar Sources -->
+            <!-- CALENDARS -->
             <div class="card">
-                <h3>Calendar Sources</h3>
+                <h3>Calendars</h3>
                 <p class="card-subtext">
                     Select which calendars to include in your daily schedule.
                 </p>
@@ -87,20 +87,25 @@
                 </form>
             </div>
 
-            <!-- CENTER: Placeholder (Social Battery later) -->
+            <!-- ENERGY FORECAST -->
             <div class="card">
-                <h3>Social Battery Forecast</h3>
-                <div class="placeholder">
-                    <p>Coming soon</p>
-                </div>
-            </div>
+                <h3>Energy Forecast</h3>
 
-            <!-- RIGHT: Placeholder -->
-            <div class="card">
-                <h3>How it works</h3>
-                <p class="card-subtext">
-                    Your schedule is built from selected calendars and ordered chronologically.
-                </p>
+                <div class="forecast-content-minimal">
+                    <div class="battery-percent-display">
+                        <span class="percent-num {{#if isLowEnergy}}low-energy-text{{/if}}">{{batteryLevel}}%</span>
+                        <span class="percent-label">capacity</span>
+                    </div>
+
+                    <div class="forecast-text-minimal">
+                        <h4 class="{{#if isLowEnergy}}low-energy-text{{/if}}">{{energyStatus}}</h4>
+                        <p>{{energyAdvice}}</p>
+                    </div>
+                </div>
+
+                <div class="forecast-badge">
+                    <i class="fa-solid fa-battery-half"></i> Forecast based on selected calendars
+                </div>
             </div>
 
         </section>
@@ -112,7 +117,6 @@
             <div class="schedule-header">
                 <h3>Today's Schedule</h3>
 
-                <!-- moved date nav here -->
                 <div class="date-nav">
                     <button class="btn-outline">Today</button>
                     <button class="btn-outline"><i class="fa-solid fa-chevron-left"></i></button>
@@ -124,7 +128,7 @@
                 {{#each events}}
                     <div class="schedule-item">
                         <div class="time">
-                            {{this.startTime}}
+                            {{this.startTime}} - {{this.endTime}}
                         </div>
 
                         <div class="event">
@@ -132,11 +136,9 @@
                                 class="event-dot" 
                                 style="background-color: {{this.color}}"
                             ></span>
+                            <div class="event-title">{{this.summary}}</div>
 
-                            <div>
-                                <div class="event-title">{{this.summary}}</div>
-                                <div class="event-duration">{{this.duration}} min</div>
-                            </div>
+                            <div class="event-duration">{{this.duration}} min</div>
                         </div>
                     </div>
                 {{/each}}
@@ -145,5 +147,3 @@
         </section>
     </main>
 </div>
-
-<script src="/js/calendar-dropdown.js"></script>
