@@ -70,7 +70,9 @@
                                 <p>{{this.projectDesc}}</p>
                             </div>
                         </div>
-                        <button class="btn-outline"><i class="fa-solid fa-play"></i> Open Project</button>
+                        <button class="btn-outline" data-pid="{{this._id}}" onclick="openProject(this)">
+                            <i class="fa-solid fa-play"></i> Open Project
+                        </button>
                     </div>
                 {{/each}}
             {{else}}
