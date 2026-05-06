@@ -1,0 +1,2 @@
+PROJECTS
+- [ ] DELETE Function for projects (MUST CASCADE TO NOTES AND OTHER STUFF)

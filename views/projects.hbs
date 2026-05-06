@@ -1,11 +1,15 @@
 <div class="dashboard-container">
-    <aside class="sidebar">
+    <span class="sidebar-open sidebar-toggle" onclick="openSidebar()">
+        <i class="fa-solid fa-arrow-right"></i>
+    </span>
+
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <span class="sidebar-logo-section">
                 <img src="" class="sidebar-logo">
                 <span class="brand-name">DeepFocus Workflow</span>
             </span>
-            <span class="sidebar-toggle">
+            <span class="sidebar-toggle" onclick="closeSidebar()">
                 <i class="fa-solid fa-bars"></i>
             </span>
         </div>
@@ -47,7 +51,7 @@
         </header>
 
         <div class="action-bar">
-            <button class="new-project-btn">
+            <button class="new-project-btn" onclick="openProjectModal()">
                 <i class="fa-solid fa-plus"></i>
                 New Project
             </button>
@@ -81,7 +85,7 @@
         <div class="project-create-container">
             <span class="project-create-header">
                 <h2>New Project</h2>
-                <span class="project-create-close">
+                <span class="project-create-close" onclick="closeProjectModal()">
                     <i class="fa-solid fa-xmark"></i>
                 </span>
             </span>

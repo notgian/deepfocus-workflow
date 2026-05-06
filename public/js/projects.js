@@ -29,3 +29,36 @@ createForm.addEventListener('submit', async (e) => {
     if (res.status == 200)
         window.location.reload()
 })
+
+const createModal = document.getElementsByClassName('project-create-modal')[0]
+
+function closeProjectModal() {
+    createModal.style.display = 'none'
+    createModal.style.opacity = '0%'
+}
+
+function openProjectModal() {
+    createModal.style.display = 'flex'
+    createModal.style.opacity = '100%'
+
+    let inputs = createForm.getElementsByTagName('input')
+    let textareas = createForm.getElementsByTagName('textarea')
+
+    for (let input of inputs) {
+        input.value = '';
+    }
+    for (let textarea of textareas) {
+        textarea.value = '';
+    }
+}
+
+const sidebar = document.getElementById("sidebar");
+ 
+
+function closeSidebar() {
+    sidebar.style.marginLeft = '-320px';
+}
+
+function openSidebar() {
+    sidebar.style.marginLeft = '0px';
+}

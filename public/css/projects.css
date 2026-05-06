@@ -19,10 +19,19 @@ body {
     position: sticky;
     top: 0;
     height: 100vh;
+    z-index: 10;
+    margin-left: 0px;
+    transition: margin-left 0.25s ease;
 }
 
 .sidebar-toggle {
     cursor: pointer;
+    color: black;
+    transition: 0.2s color;
+}
+
+.sidebar-toggle:hover {
+    color: var(--primary-blue);
 }
 
 .sidebar-header {
@@ -119,6 +128,18 @@ body {
     color: var(--bg-white);
 }
 
+.sidebar-open {
+    position: fixed;
+    font-size: 1rem;
+    left: 0px;
+    top: 30px;
+    padding: 10px;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    background-color: white;
+    border: 2px solid var(--border-light-grey);
+}
+
 /* Project Cards */
 .project-grid {
     display: grid;
@@ -205,9 +226,10 @@ body {
     height: 100%;
     background-color: rgba(0,0,0, 0.3);
     z-index: 20;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+    opacity: 0;
 }
 
 .project-create-container {
@@ -252,17 +274,21 @@ body {
 .input-group input {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    padding: 0.2em 0.5em;
+    padding: 0.5em 0.8em;
     width: 100%;
+    border-radius: 0.5em;
+    border: 2px solid var(--border-light-grey);
 }
 
 .input-group textarea {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    padding: 0.2em 0.5em;
+    padding: 0.5em 0.8em;
     width: 100%;
     resize: none;
     min-height: 5em;
+    border-radius: 0.5em;
+    border: 2px solid var(--border-light-grey);
 }
 
 .project-create-button {

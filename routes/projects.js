@@ -24,6 +24,10 @@ router.get('/', async (req, res) => {
     })
 });
 
+router.get('/open', async (req, res) => {
+
+})
+
 /* API LIKE FUNCTIONS */
 
 router.post('/', async (req, res) => {
@@ -47,8 +51,8 @@ router.post('/', async (req, res) => {
     } catch (err) {
         return res.status(500).json({message: 'Server encountered an error. ' + err})
     }
-
 })
+
 
 module.exports = {
     projectsRouter: router
