@@ -21,31 +21,6 @@ const User = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-<<<<<<< HEAD
-=======
-    },
-
-    displayName: String,
-
-    // Local Auth Fields
-    // For when account is created w/o Google
-    local: {
-        password: {
-            type: String,
-            select: false
-        },
-    },
-
-    // Google Auth Fields
-    // no need for password
-    google: {
-        id: {
-            type: String,
-            unique: true,
-            sparse: true
-        },
-        token: String 
->>>>>>> origin/auth
     }
 });
 
