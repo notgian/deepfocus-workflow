@@ -26,6 +26,10 @@ const User = new mongoose.Schema({
         type: String,
         required: true,
     },
+    selectedCalendars: {
+        type: [String],
+        default: [] 
+    }
 });
 
 module.exports = mongoose.model('User', User);
