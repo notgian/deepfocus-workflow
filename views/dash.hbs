@@ -1,0 +1,105 @@
+<div class="dashboard-container">
+    <span class="sidebar-open sidebar-toggle" onclick="openSidebar()">
+        <i class="fa-solid fa-arrow-right"></i>
+    </span>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo-section">
+                <img src="" class="sidebar-logo">
+                <span class="brand-name">DeepFocus Workflow</span>
+            </span>
+            <span class="sidebar-toggle" onclick="closeSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-group project-nav">
+                <a href="/dash" class="nav-item">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Projects
+                </a>
+                <h3>{{project.projectName}}</h3>
+            </div>
+
+            <div class="nav-group">
+                <a href="/dash" class="nav-item active">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+                <a href="/brief" class="nav-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                    Mission Brief
+                </a>
+
+                <a href="/focus" class="nav-item">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    Focus Timer
+                </a>
+
+                <a href="/notes" class="nav-item">
+                    <i class="fa-regular fa-note-sticky"></i>
+                    Notes and Links
+                </a>
+            </div>
+
+            <div class="nav-group bottom-nav">
+                <a href="/calendar" class="nav-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    Calendar
+                </a>
+                <a href="/analytics" class="nav-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Analytics
+                </a>
+                <a href="/settings" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <div class="header-titles">
+                <h1>Good Morning, {{user.displayName}} 👋</h1>
+                <p>Let's make today your most focused day.</p>
+            </div>
+            <div class="header-actions">
+                <img src="{{user.displayImage}}" class="avatar" referrerPolicy="no-referrer">
+            </div>
+        </header>
+    </main>
+
+    <span class="project-create-modal">
+        <div class="project-create-container">
+            <span class="project-create-header">
+                <h2>New Project</h2>
+                <span class="project-create-close" onclick="closeProjectModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            </span>
+
+            <form id="project-create-form" class="project-create-form" method="POST" action="/projects">
+                <span class="input-group">
+                    <p>Project Name<p>
+                    <input type="text" name="projectName" placeholder="Enter project name..."/>
+                </span>
+
+                <span class="input-group">
+                    <p>Project Description</p>
+                    <textarea name="projectDesc" placeholder="Enter project description..."></textarea>
+                </span>
+
+                <button class="project-create-button">
+                    Create Project
+                </button>
+            </form>
+
+        </div>
+
+    </span>
+</div>
+

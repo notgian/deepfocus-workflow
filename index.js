@@ -60,11 +60,13 @@ const { homeRouter } = require('./routes/home.js')
 const { authRouter } = require('./routes/auth.js')
 const { projectsRouter } = require('./routes/projects.js')
 const { userProjectRouter } = require('./routes/userProject.js')
+const { dashboardRouter } = require('./routes/dash.js')
 
 // construct the routes
 app.use('/auth', authRouter);
 app.use('/projects', projectsRouter);
 app.use('/project', userProjectRouter);
+app.use('/dash', dashboardRouter);
 // app.use('/settings', mainRouter);  // This 
 // app.use('/analytics', mainRouter);  // This 
 // app.use('/calendar', mainRouter);  // This 
