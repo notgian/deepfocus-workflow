@@ -84,6 +84,8 @@ async function saveNote() {
             content: content.value
         })
     })
+
+    await listNotes()
 }
 
 async function deleteNote() {
@@ -131,5 +133,9 @@ async function createNote() {
 
 
 document.querySelector('.notes-title').addEventListener('focusout', async (e) => {
+    await saveNote();
+})
+
+document.querySelector('.notes-textarea').addEventListener('focusout', async (e) => {
     await saveNote();
 })
