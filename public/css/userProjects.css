@@ -96,6 +96,12 @@ body {
 .main-content {
     flex-grow: 1;
     padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-body {
+    flex-grow: 1;
 }
 
 .content-header {

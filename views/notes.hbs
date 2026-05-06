@@ -16,7 +16,7 @@
 
         <nav class="nav-menu">
             <div class="nav-group project-nav">
-                <a href="/dash" class="nav-item">
+                <a href="/projects" class="nav-item">
                     <i class="fa-solid fa-arrow-left"></i>
                     Projects
                 </a>
@@ -64,40 +64,43 @@
     <main class="main-content">
         <header class="content-header">
             <div class="header-titles">
-                <h1>Good Morning, {{user.displayName}} 👋</h1>
-                <p>Let's make today your most focused day.</p>
+                <h1>Notes</h1>
+                <p>Leave yourself a reminder or two.</p>
             </div>
             <div class="header-actions">
                 <img src="{{user.displayImage}}" class="avatar" referrerPolicy="no-referrer">
             </div>
         </header>
-    </main>
 
-    <span class="project-create-modal">
-        <div class="project-create-container">
-            <span class="project-create-header">
-                <h2>New Project</h2>
-                <span class="project-create-close" onclick="closeProjectModal()">
-                    <i class="fa-solid fa-xmark"></i>
+        <div class="content-body notes-container">
+            <div class="notes-sidebar">
+                <span class="new-note-button note-item">
+                   <i class="fa-solid fa-pen-clip"></i> Create note
                 </span>
-            </span>
-
-            <form id="project-create-form" class="project-create-form" method="POST" action="/projects">
-                <span class="input-group">
-                    <p>Project Name<p>
-                    <input type="text" name="projectName" placeholder="Enter project name..."/>
+                <span class="note-item">
+                   Note 1
                 </span>
-
-                <span class="input-group">
-                    <p>Project Description</p>
-                    <textarea name="projectDesc" placeholder="Enter project description..."></textarea>
+                <span class="note-item active">
+                   Note Name
+                </span>
+                <span class="note-item">
+                   Note 3
+                </span>
+                <span class="note-item">
+                   Note 4
                 </span>
 
-                <button class="project-create-button">
-                    Create Project
-                </button>
-            </form>
+            </div>
 
+            <div class="notes-area">
+                <span class="notes-area-header">
+                    <input class="notes-title" value="Note Name" placeholder="Title"/>
+                    <span class="delete-note">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </span>
+                </span>
+                <textarea class="notes-textarea" placeholder="Type your notes here...">Notes content here</textarea>
+            </div>
         </div>
-    </span>
+    </main>
 </div>

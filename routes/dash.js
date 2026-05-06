@@ -6,7 +6,6 @@ const { isUserSession, isUserProject } = require('../util/middlewares.js');
 const router = express.Router();
 
 // TODO require google passport authentication
-// TODO replace the fake login with redirect to '/'
 router.get('/', [isUserSession, isUserProject], async (req, res) => {
     res.render('dash.hbs', {
         title: `Dashboard | ${req.session.project.projectName}`,
