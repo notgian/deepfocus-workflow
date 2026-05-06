@@ -21,7 +21,11 @@ const User = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    }
+    },
+    displayImage: {
+        type: String,
+        required: true,
+    },
 });
 
 module.exports = mongoose.model('User', User);
