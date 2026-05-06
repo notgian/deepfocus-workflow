@@ -1,17 +1,13 @@
 const express = require('express');
 
 const Projects = require('../models/projects.js');
+const { isUserSession } = require('../util/middlewares.js');
 
 const router = express.Router();
 
 
 // TODO require google passport authentication
-// TODO replace the fake login with redirect to '/'
-router.get('/open', async (req, res) => {
-    if (!req.session?.user)
-        return res.redirect('/auth/fakelogin')
-        // return res.redirect('/')
-
+router.get('/open', [isUserSession], async (req, res) => {
     const projId = req.query?.pid 
     const foundProj = await Projects.findOne({_id:projId});
     
