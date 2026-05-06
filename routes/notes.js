@@ -55,6 +55,32 @@ router.get('/:noteId', async (req, res) => {
     }
 })
 
+router.post('/', async (req, res) => {
+    const userId = req?.session?.user?._id
+    const projectId = req?.session?.project?._id
+
+    const title = req?.body?.title;
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+    if (!projectId)
+        return res.status(400).json({message:'No project selected.'})
+    if (!title)
+        return res.status(400).json({message:'No title provided.'})
+    
+    try {
+        let newNote = await Notes.create({
+            userId: userId,
+            projectId: projectId,
+            title: title,
+            content: ''
+        })
+        return res.status(200).json({message:"Note created.", data: newNote})
+    } catch (err) {
+        return res.status(500).json({message:"Something went wrong " + err})
+    }
+})
+
 router.post('/edit/:noteId', async (req, res) => {
     const userId = req?.session?.user?._id
     const projectId = req?.session?.project?._id

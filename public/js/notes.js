@@ -109,6 +109,26 @@ async function deleteNote() {
         window.location.reload();
 }
 
+async function createNote() {
+    const title = prompt("Enter a name for the note: ");
+
+    const res = await fetch('/notes/', {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            title: title,
+        })
+    });
+
+    const resJson = await res.json();
+    alert(resJson?.message || "Something went wrong")
+    if (res.status == 200)
+        await listNotes();
+}
+
 
 document.querySelector('.notes-title').addEventListener('focusout', async (e) => {
     await saveNote();
