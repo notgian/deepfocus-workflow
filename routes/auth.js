@@ -31,11 +31,11 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
 // temporary route to set the user session
 router.get('/fakelogin', (req, res) => {
     req.session.user = {
-        _id: "69fad1c5e9591cf51e1b0d5b",
-        googleId: "109259785027979911517",
-        displayName: "Gian Ortha",
-        email: "gianlorenzoortha@gmail.com",
-        displayImage: "https://lh3.googleusercontent.com/a/ACg8ocJlXzSv-o8z3iqY01wiD_eo9FbT1NLWJsW2t-G4j70oJxQNug=s96-c"
+        _id: "69fae70ace9b1088792dca27",
+        googleId: "101370151437162306820",
+        displayName: "Kennese Ross Manalang",
+        email: "kennese_manalang@dlsu.edu.ph",
+        displayImage: "https://lh3.googleusercontent.com/a/ACg8ocL0FurayyARxtEXgUUjtnpW-ItfO0tMzF3QcITzXqCy-EvCN0aK=s96-c"
     }
 
     res.send(`Fake user login success! ${JSON.stringify(req.session.user)}`)
