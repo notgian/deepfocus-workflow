@@ -107,6 +107,12 @@ body {
     border: 2px solid var(--border-light-grey);
     border-radius: 10px;
     cursor: pointer;
+    transition: all 0.2s;
+}
+
+.new-project-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--bg-white);
 }
 
 /* Project Cards */
@@ -178,7 +184,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     margin-top: 16px;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.2s;
 }
 
 .btn-outline:hover {
