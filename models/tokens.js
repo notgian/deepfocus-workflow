@@ -9,6 +9,10 @@ const Tokens = new mongoose.Schema({
         unique: true,
         required: true,
     },
+    accessTok: {
+        type: String,
+        required: true
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 
