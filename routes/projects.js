@@ -28,6 +28,7 @@ router.get('/open', async (req, res) => {
 
 /* API LIKE FUNCTIONS */
 
+// TODO require google passport authentication
 router.post('/', async (req, res) => {
     const projectName = req.body?.projectName;
     const projectDesc = req.body?.projectDesc || ''; 
