@@ -82,6 +82,30 @@ router.post('/edit/:noteId', async (req, res) => {
         if (content)
             updateObj['content'] = content
         const result = await Notes.findOneAndUpdate({_id: req.params.noteId}, updateObj)
+        return res.status(200).json({message:"Note edited."})
+    } catch (err) {
+        return res.status(500).json({message:"Something went wrong " + err})
+    }
+})
+
+router.post('/delete/:noteId', async (req, res) => {
+    const userId = req?.session?.user?._id
+    const projectId = req?.session?.project?._id
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+    if (!projectId)
+        return res.status(400).json({message:'No project selected.'})
+    
+    // Check first if note exists
+    try {
+        const foundNote = await Notes.findOne({_id: req.params.noteId}).lean()
+        if (!foundNote)
+            return res.status(404).json({message:"Note not found."})
+
+        // Delete note
+        const result = await Notes.findOneAndDelete({_id: req.params.noteId})
+        return res.status(200).json({message:"Note deleted."})
     } catch (err) {
         return res.status(500).json({message:"Something went wrong " + err})
     }

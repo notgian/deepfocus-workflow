@@ -86,6 +86,29 @@ async function saveNote() {
     })
 }
 
+async function deleteNote() {
+    const confirmDelete = confirm("Are you sure you want to delete this note?");
+    if (!confirmDelete)
+        return;
+
+    const activeNoteId = notesSidebar.getAttribute("data-active-note");
+
+    const res = await fetch('/notes/delete/'+activeNoteId, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+    });
+
+    const resJson = await res.json();
+
+    alert(resJson?.message || "Something went wrong...")
+
+    if (res.status == 200)
+        window.location.reload();
+}
+
 
 document.querySelector('.notes-title').addEventListener('focusout', async (e) => {
     await saveNote();
