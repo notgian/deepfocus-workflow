@@ -1,0 +1,83 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-logo-section">
+                <img src="" class="sidebar-logo">
+                <span class="brand-name">DeepFocus Workflow</span>
+            </span>
+            <span class="sidebar-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+        </div>
+
+
+        <nav class="nav-menu">
+            <div class="nav-group">
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+                <a href="/projects" class="nav-item">
+                    <i class="fa-solid fa-cube"></i>
+                    Projects
+                </a>
+            </div>
+
+            <div class="nav-group bottom-nav">
+                <a href="/calendar" class="nav-item active">
+                    <i class="fa-solid fa-calendar"></i>
+                    Calendar
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Analytics
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <div class="header-titles">
+                <h1>My Schedule</h1>
+                <p>Your Google Calendar Events Today</p>
+            </div>
+            <div class="header-actions">
+                <img src="https://i.pravatar.cc/150?u=dfw" class="avatar">
+            </div>
+        </header>
+
+        <!-- Calendar Selection Dropdown -->
+        <div class="action-bar">
+            <form action="/calendar/update-selection" method="POST" class="calendar-selector">
+                <div class="dropdown">
+                    <button type="button" class="btn-outline" onclick="toggleDropdown()">
+                        <i class="fa-solid fa-calendar-check"></i> Select Calendars
+                    </button>
+
+                    <div id="calendar-dropdown" class="dropdown-content">
+                        {{#each calendars}}
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="calendarIds" value="{{this.id}}" {{#if this.selected}}checked{{/if}}>
+                                {{this.summary}}
+                            </label>
+                        {{/each}}
+                        
+                        <button type="submit" class="save-btn">Apply Selection</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <section class="project-grid">
+            <!-- If there are events, display them -->
+
+        </section>
+    </main>
+</div>
+
+<script src="/js/calendar-dropdown.js"></script>
