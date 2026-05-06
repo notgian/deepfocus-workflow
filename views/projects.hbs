@@ -10,7 +10,6 @@
             </span>
         </div>
 
-
         <nav class="nav-menu">
             <div class="nav-group">
                 <a href="/projects" class="nav-item active">
@@ -77,4 +76,33 @@
             <!-- Additional cards follow same structure -->
         </section>
     </main>
+
+    <span class="project-create-modal">
+        <div class="project-create-container">
+            <span class="project-create-header">
+                <h2>New Project</h2>
+                <span class="project-create-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            </span>
+
+            <form id="project-create-form" class="project-create-form" method="POST" action="/projects">
+                <span class="input-group">
+                    <p>Project Name<p>
+                    <input type="text" name="projectName" placeholder="Enter project name..."/>
+                </span>
+
+                <span class="input-group">
+                    <p>Project Description</p>
+                    <textarea name="projectDesc" placeholder="Enter project description..."></textarea>
+                </span>
+
+                <button class="project-create-button">
+                    Create Project
+                </button>
+            </form>
+
+        </div>
+
+    </span>
 </div>

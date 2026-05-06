@@ -21,6 +21,10 @@ body {
     height: 100vh;
 }
 
+.sidebar-toggle {
+    cursor: pointer;
+}
+
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -190,4 +194,91 @@ body {
 .btn-outline:hover {
     background: var(--primary-blue);
     color: white;
+}
+
+/* Project create modal */
+.project-create-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.3);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-create-container {
+    background-color: white;
+    width: 50vw;
+    height: 60vh;
+    padding: 5vh 5vw;
+    border: 3px solid var(--border-light-grey);
+    border-radius: 2rem;
+}
+
+.project-create-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.project-create-close {
+    cursor: pointer;
+    color: black;
+    transition: color 0.2s;
+}
+
+.project-create-close:hover {
+    color: var(--primary-blue)
+}
+
+.project-create-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+}
+
+.input-group {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input-group input {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.2em 0.5em;
+    width: 100%;
+}
+
+.input-group textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.2em 0.5em;
+    width: 100%;
+    resize: none;
+    min-height: 5em;
+}
+
+.project-create-button {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--primary-blue);
+    padding: 0.5em;
+    border: 2px solid var(--border-light-grey);
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.project-create-button:hover {
+    color: white;
+    background-color: var(--primary-blue);
 }

@@ -1,0 +1,31 @@
+// Create project
+const createForm = document.getElementById('project-create-form')
+
+createForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(createForm);
+
+    const projectName = formData.get('projectName')
+    const projectDesc = formData.get('projectDesc')
+
+    if (projectName == '')
+        return alert('Please enter a project name.')
+
+    const res = await fetch('/projects', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            projectName: projectName,
+            projectDesc: projectDesc
+        })
+    });
+
+    const returnData = await res.json()
+    alert(returnData.message)
+    if (res.status == 200)
+        window.location.reload()
+})

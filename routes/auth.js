@@ -36,7 +36,8 @@ router.get('/fakelogin', (req, res) => {
         displayImage: "https://lh3.googleusercontent.com/a/ACg8ocJlXzSv-o8z3iqY01wiD_eo9FbT1NLWJsW2t-G4j70oJxQNug=s96-c"
     }
 
-    res.send(`Fake user login success! ${JSON.stringify(req.session.user)}`)
+    // res.send(`Fake user login success! ${JSON.stringify(req.session.user)}`);
+    res.redirect('/projects');
 })
 
 module.exports = {
