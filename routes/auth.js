@@ -16,7 +16,9 @@ router.get('/logout', (req, res) => {
 
 // auth with google
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar.readonly'],
+    prompt: 'consent',
+    accessType: 'offline'
 }));
 
 // callback route for google to redirect to
