@@ -1,6 +1,15 @@
 
+const express = require('express');
 
-// Primary routes
-// /:projectId/
-// /:projectId/notes
-// /:projectId/focus
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.render('projects.hbs', {
+        title: 'Projects | Deepfocus Workflow',
+        css: ['/css/projects.css']
+    })
+});
+
+module.exports = {
+    projectsRouter: router
+}

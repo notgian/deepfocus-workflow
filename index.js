@@ -58,14 +58,15 @@ app.use(passport.session());
 // const importedRoute1 = require('./routes/routesFile1.js')
 const { homeRouter } = require('./routes/home.js')
 const { authRouter } = require('./routes/auth.js')
+const { projectsRouter } = require('./routes/projects.js')
 
 // construct the routes
 app.use('/auth', authRouter);
-// app.use('/projects', mainRouter);  // 
+app.use('/projects', projectsRouter);  // 
 // app.use('/settings', mainRouter);  // This 
 // app.use('/analytics', mainRouter);  // This 
 // app.use('/calendar', mainRouter);  // This 
-// app.use('/:projectid/', mainRouter);
+// app.use('/project/', mainRouter);
 // app.use('/:projectid/brief', mainRouter);
 // app.use('/:projectid/focus', mainRouter);
 // app.use('/:projectid/notes', mainRouter);
