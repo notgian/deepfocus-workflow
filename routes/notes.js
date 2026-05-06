@@ -35,8 +35,6 @@ router.get('/list', async (req, res) => {
     } catch (err) {
         return res.status(500).json({message:"Something went wrong " + err})
     }
-    
-
 })
 
 module.exports = {

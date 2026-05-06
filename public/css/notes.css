@@ -26,7 +26,7 @@
     color: white;
 }
 
-.note-item {
+.note-sidebar-item {
     margin: 5px 0;
     padding: 0.8em 1em;
     border: 2px solid var(--border-light-grey);
@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-.note-item.active {
+.note-sidebar-item.active {
     background: #f1f5f9;
     color: var(--primary-blue);
 }
