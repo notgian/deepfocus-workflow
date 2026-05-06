@@ -1,3 +1,5 @@
+const notesSidebar = document.getElementsByClassName("notes-sidebar")[0];
+
 async function listNotes() {
     const noteItems = document.getElementsByClassName("note-item")
     while (noteItems.length > 0) {
@@ -11,17 +13,55 @@ async function listNotes() {
     const notesResJson = await notesRes.json()
     const notes = notesResJson.data
     
-    const notesSidebar = document.getElementsByClassName("notes-sidebar")[0];
     const activeNoteId = notesSidebar.getAttribute("data-active-note")
 
     for (let note of notes) {
         let active = activeNoteId && activeNoteId == note._id
         notesSidebar.innerHTML += `
-            <span data-noteid="${note._id}" class="note-sidebar-item note-item ${active ? 'active' : ''}">
+            <span data-noteid="${note._id}" class="note-sidebar-item note-item ${active ? 'active' : ''}" onclick=openNote(this)>
                ${note.title}
             </span>
         `
     }
+}
+
+async function openNote(el) {
+    // Setting active states
+    const lastActiveNoteId = notesSidebar.getAttribute("data-active-note")
+
+    let lastActiveNote = notesSidebar.querySelector(`[data-noteid="${lastActiveNoteId}"]`)
+    lastActiveNote?.classList?.remove('active')
+
+    const noteId = el.getAttribute('data-noteid') 
+    notesSidebar.setAttribute('data-active-note', noteId)
+    el.classList.add('active')
+
+    //Opening the note on the side
+    //Get note data to display
+    showNote(noteId)
+}
+
+async function showNote(noteId) {
+    const notesRes = await fetch('/notes/'+noteId, {
+        method: "GET"
+    });
+
+    const notesResJson = await notesRes.json();
+    const note = notesResJson.data;
+
+    const noteTitle = document.querySelector('.notes-title');
+    const noteContent = document.querySelector('.notes-textarea');
+
+    noteTitle.value = note.title;
+    noteContent.value = note.content;
+
+    document.querySelector('.notes-area-inactive').style.display = 'none';
+    document.querySelector('.notes-area-active').style.display = 'flex';
+}
+
+async function closeNote() {
+    document.querySelector('.notes-area-inactive').style.display = 'block';
+    document.querySelector('.notes-area-active').style.display = 'none';
 }
 
 document.addEventListener("DOMContentLoaded", async (e) => {

@@ -37,6 +37,24 @@ router.get('/list', async (req, res) => {
     }
 })
 
+// TODO require google passport authentication
+router.get('/:noteId', async (req, res) => {
+    const userId = req?.session?.user?._id
+    const projectId = req?.session?.project?._id
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+    if (!projectId)
+        return res.status(400).json({message:'No project selected.'})
+    
+    try {
+        const foundNote = await Notes.findOne({_id: req.params.noteId}).lean()
+        return res.status(200).json({message:"OK", data: foundNote})
+    } catch (err) {
+        return res.status(500).json({message:"Something went wrong " + err})
+    }
+})
+
 module.exports = {
     notesRouter: router
 }
