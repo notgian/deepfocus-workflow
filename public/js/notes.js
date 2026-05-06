@@ -68,3 +68,25 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     await listNotes()
 })
 
+async function saveNote() {
+    const activeNoteId = notesSidebar.getAttribute("data-active-note")
+    const title = document.querySelector('.notes-title')
+    const content = document.querySelector('.notes-textarea')
+
+    const res = await fetch('/notes/edit/'+activeNoteId, {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+            title: title.value,
+            content: content.value
+        })
+    })
+}
+
+
+document.querySelector('.notes-title').addEventListener('focusout', async (e) => {
+    await saveNote();
+})

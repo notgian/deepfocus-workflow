@@ -96,8 +96,13 @@
                 <span class="notes-area-active">
                     <span class="notes-area-header">
                         <input class="notes-title" value="Note Name" placeholder="Title"/>
-                        <span class="delete-note">
-                            <i class="fa-solid fa-trash-can"></i>
+                        <span class="notes-actions">
+                            <span class="save-note" onclick="saveNote()">
+                                <i class="fa-solid fa-download"></i>
+                            </span>
+                            <span class="delete-note">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </span>
                         </span>
                     </span>
                     <textarea class="notes-textarea" placeholder="Type your notes here...">Notes content here</textarea>

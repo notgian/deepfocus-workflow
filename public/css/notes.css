@@ -70,6 +70,25 @@
     font-family: 'Inter', sans-serif;
 }
 
+.notes-actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.notes-actions span {
+    margin: 0 10px; 
+}
+
+.save-note {
+    color: black;
+    cursor: pointer;
+    transition: 0.2s color;
+}
+
+.save-note:hover {
+    color: var(--primary-blue);
+}
+
 .delete-note {
     color: black;
     cursor: pointer;

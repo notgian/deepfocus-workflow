@@ -55,6 +55,38 @@ router.get('/:noteId', async (req, res) => {
     }
 })
 
+router.post('/edit/:noteId', async (req, res) => {
+    const userId = req?.session?.user?._id
+    const projectId = req?.session?.project?._id
+
+    const title = req?.body?.title;
+    const content = req?.body?.content;
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+    if (!projectId)
+        return res.status(400).json({message:'No project selected.'})
+    if (!title && !content)
+        return res.status(400).json({message:'No title nor content provided.'})
+    
+    // Check first if note exists
+    try {
+        const foundNote = await Notes.findOne({_id: req.params.noteId}).lean()
+        if (!foundNote)
+            return res.status(404).json({message:"Note not found."})
+
+        // Update if note exists
+        const updateObj = {}
+        if (title)
+            updateObj['title'] = title
+        if (content)
+            updateObj['content'] = content
+        const result = await Notes.findOneAndUpdate({_id: req.params.noteId}, updateObj)
+    } catch (err) {
+        return res.status(500).json({message:"Something went wrong " + err})
+    }
+})
+
 module.exports = {
     notesRouter: router
 }
