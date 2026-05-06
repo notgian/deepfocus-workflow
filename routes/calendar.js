@@ -3,6 +3,7 @@ const router = express.Router();
 const { google } = require('googleapis');
 const Token = require('../models/tokens');
 const User = require('../models/users');
+const getGoogleClient = require('../utils/googleAuth');
 
 router.get('/', async (req, res) => {
    
@@ -11,20 +12,9 @@ router.get('/', async (req, res) => {
 
     try {
         const user = await User.findById(req.session.user._id);
-        const tokenData = await Token.findOne({ userId: req.session.user._id });
-
-        if (!tokenData) return res.redirect('/auth/google');
-
-        const oauth2Client = new google.auth.OAuth2(
-            process.env.GOOGLE_CLIENT_ID,
-            process.env.GOOGLE_CLIENT_SECRET,
-            process.env.GOOGLE_CALLBACK_URL
-        );
-
-        oauth2Client.setCredentials({
-            access_token: tokenData.accessTok,
-            refresh_token: tokenData.refreshTok
-        });
+        
+        const oauth2Client = await getGoogleClient(req.session.user._id);
+        if (!oauth2Client) return res.redirect('/auth/google');
 
         const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
@@ -39,7 +29,7 @@ router.get('/', async (req, res) => {
             return {            
                 id: cal.id,
                 summary: cal.summary,
-                selected: user.selectedCalendars.includes(cal.id),
+                selected: (user.selectedCalendars || []).includes(cal.id),
                 backgroundColor: cal.backgroundColor 
             };
         });
@@ -49,8 +39,9 @@ router.get('/', async (req, res) => {
         let allEvents = [];
 
         // fetch events ONLY if the user has selected calendars
-        if (user.selectedCalendars && user.selectedCalendars.length > 0) {
-            const eventPromises = user.selectedCalendars.map(async (calId) => {
+        const selectedList = user.selectedCalendars || [];
+        if (selectedList.length > 0) {
+            const eventPromises = selectedList.map(async (calId) => {
                 const response = await calendar.events.list({
                     calendarId: calId,
                     timeMin: new Date().toISOString(),
