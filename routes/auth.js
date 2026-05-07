@@ -2,16 +2,23 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-// auth login
-router.get('/login', (req, res) => {
-    // handle with passport 
-    res.send('Login route');
-});
-
 // auth logout
-router.get('/logout', (req, res) => {
-    // handle with passport 
-    res.send('Logout route');
+router.get('/logout', (req, res, next) => {
+
+    req.logout((err) => {
+        if (err) { 
+            return next(err); 
+        }
+
+        req.session.destroy((err) => {
+            if (err) {
+                return next(err); 
+            }
+
+            res.clearCookie('connect.sid'); 
+            res.redirect('/');
+        });
+    });
 });
 
 // auth with google

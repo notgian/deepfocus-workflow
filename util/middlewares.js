@@ -10,7 +10,7 @@ function isUserSession(req, res, next) {
 
     // set req.session.user
     if (!req.session?.user) {
-        User.findOne({_id: req.session.passport.user}).then( (user) => {
+        User.findOne({_id: req.session.passport.user}).lean().then( (user) => {
             console.log("--------> ", user, " | ", req.session.passport.user)
             req.session.user = user
             req.session.save( (err) => {
