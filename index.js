@@ -64,6 +64,7 @@ const { dashboardRouter } = require('./routes/dash.js')
 const { notesRouter } = require('./routes/notes.js')
 const { calendarRouter } = require('./routes/calendar.js')
 const { focusRouter } = require('./routes/focus.js')
+const { missionBriefRouter } = require('./routes/brief.js')
 
 // construct the routes
 app.use('/auth', authRouter);
@@ -73,6 +74,7 @@ app.use('/dash', dashboardRouter);
 app.use('/notes', notesRouter);
 app.use('/calendar', calendarRouter);
 app.use('/focus', focusRouter);
+app.use('/brief', missionBriefRouter);
 // app.use('/settings', mainRouter);  // This 
 // app.use('/analytics', mainRouter);  // This 
 app.use('/', homeRouter);
