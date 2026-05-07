@@ -142,3 +142,28 @@ function enableSetTimer(time) {
     document.querySelector('.set-time-30').disabled = false;
     document.querySelector('.set-time-50').disabled = false;
 }
+
+async function saveDump() {
+    const dumpTextarea = document.querySelector('.brain-dump-textarea');
+    const dumpText = dumpTextarea.value.trim();
+
+    if (dumpText == '')
+        return
+
+    const res = await fetch ('/focus/dump', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: dumpText
+        })
+    })
+
+    const resJson = await res.json()
+    alert(resJson.message) 
+    if (res.status == 200) {
+        dumpTextarea.value = '';
+    }
+}
