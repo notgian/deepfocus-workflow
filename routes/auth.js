@@ -23,8 +23,8 @@ router.get('/google', passport.authenticate('google', {
 
 // callback route for google to redirect to
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-
-    res.send('Google callback route');
+    // res.send('Google callback route');
+    res.redirect('/projects')
 });
 
 // TODO: remove this

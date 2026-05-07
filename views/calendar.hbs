@@ -13,10 +13,6 @@
 
         <nav class="nav-menu">
             <div class="nav-group">
-                <a href="#" class="nav-item">
-                    <i class="fa-solid fa-house"></i>
-                    Home
-                </a>
                 <a href="/projects" class="nav-item">
                     <i class="fa-solid fa-cube"></i>
                     Projects
@@ -28,11 +24,11 @@
                     <i class="fa-solid fa-calendar"></i>
                     Calendar
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/analytics" class="nav-item">
                     <i class="fa-solid fa-chart-simple"></i>
                     Analytics
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/settings" class="nav-item">
                     <i class="fa-solid fa-gear"></i>
                     Settings
                 </a>
@@ -48,7 +44,7 @@
             </div>
 
             <div class="header-actions"> <!-- profile actions? -->
-                <img src="https://i.pravatar.cc/150?u=dfw" class="avatar">
+                <img src="{{user.displayImage}}" class="avatar">
             </div>
         </header>
 
