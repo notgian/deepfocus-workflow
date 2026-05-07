@@ -90,7 +90,7 @@
                     <button class="set-time-50" onclick="setTimer(50)">50 min</button>
                 </div>
 
-                <div class="timer-display">
+                <div class="timer-display" data-selected-time="20" data-timer-seconds="0" data-timer-minutes="20" data-timer-paused=false>
                     <div class="progress-ring">
                         <div class="time-text">
                             <h2>20:00</h2>
@@ -99,18 +99,14 @@
                     </div>
                 </div>
 
-                <div class="timer-controls">
-                    <button class="timer-buttons btn-primary">
+                <div class="timer-controls" data-timer='start'>
+                    <button class="timer-buttons btn-primary timer-start-stop" onclick="timerStartStop()">
                         <i class="fa-solid fa-play"></i>
                         Start
                     </button>
-                    <button class="timer-buttons btn-outline">
+                    <button class="timer-buttons btn-outline timer-pause" onclick="toggleTimerPause()">
                         <i class="fa-solid fa-pause"></i>
                         Pause
-                    </button>
-                    <button class="timer-buttons btn-outline">
-                        <i class="fa-solid fa-rotate-left"></i>
-                        Reset
                     </button>
                 </div>
             </section>

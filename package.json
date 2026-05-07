@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon index.js",
+    "dev": "npx nodemon --config ./nodemon-config.json index.js",
     "start": "node index.js"
   },
   "dependencies": {
