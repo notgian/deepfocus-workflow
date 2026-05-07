@@ -12,32 +12,26 @@ const Activity = new mongoose.Schema({
         ref: 'User', 
         required: true
     },
-    date: {
-        type: Date,
-        required: true
-    },
     // record actual start and end times separately
     // from the focus period's length, in case the
     // timer is paused
-    focusTimes: [{
-        projectId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Project', 
-            required: true
-        },
-        length: {
-            type: Number,
-            required: true,
-        },
-        start: {
-            type: Date,
-            required: true,
-        },
-        end: {
-            type: Date,
-            required: true
-        },
-    }]
+    projectId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project', 
+        required: true
+    },
+    length: {
+        type: Number,
+        required: true,
+    },
+    start: {
+        type: Date,
+        required: true,
+    },
+    end: {
+        type: Date,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Activity', Activity);
