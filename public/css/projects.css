@@ -244,10 +244,10 @@ body {
     height: 100%;
     background-color: rgba(0,0,0, 0.3);
     z-index: 20;
-    display: none;
     justify-content: center;
     align-items: center;
     opacity: 0;
+    display: none;
 }
 
 .project-create-container {
@@ -257,6 +257,7 @@ body {
     padding: 5vh 5vw;
     border: 3px solid var(--border-light-grey);
     border-radius: 2rem;
+    animation: slideIn 0.2s ease-out;
 }
 
 .project-create-header {
@@ -325,4 +326,9 @@ body {
 .project-create-button:hover {
     color: white;
     background-color: var(--primary-blue);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
 }

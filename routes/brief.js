@@ -87,7 +87,7 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
             project: req.session.project,
             user: req.session.user,
             css: ['/css/userProjects.css', '/css/brief.css'],
-            js: ['/js/userProjects.js', '/js/brief.js'],
+            js: ['/js/userProjects.js', '/js/brief.js', '/js/sidebar.js'],
         }
 
         if (allEvents.length > 0)

@@ -131,7 +131,7 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
                 project: req.session.project,
                 user: req.session.user,
                 css: ['/css/dash.css'], 
-                js: ['/js/dash.js'],
+                js: ['/js/dash.js', '/js/sidebar.js'],
                 
                 batteryLevel: batteryLevel,
                 energyStatus: energyStatus,

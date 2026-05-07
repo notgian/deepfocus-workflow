@@ -26,7 +26,41 @@ function setTimer(time) {
     updateTimerDisplay()
 }
 
-function timerStartStop() {
+async function recordActivity() {
+    const controls = document.querySelector('.timer-controls');
+    const timeStart = new Date(controls.getAttribute('data-timestart'));
+    const timeEnd = new Date(controls.getAttribute('data-timeend'));
+
+    const length = Number(document.querySelector('.timer-display').getAttribute('data-selected-time'))
+    
+    const diffSeconds = (timeEnd - timeStart) / 1000
+    
+    // don't record activity if less than one minute
+    if (diffSeconds < 60)
+        return console.log('Activity is too short. Will not record.')
+    
+    const res = await fetch ('/focus/activity', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            length: length,
+            start: timeStart,
+            end: timeEnd
+        })
+    })
+
+    const resJson = await res.json()
+
+    if (res.status == 200)
+        console.log('Activity has been recorded! ', resJson.data)
+    else
+        console.log('Could not record activity: ', res.status)
+}
+
+async function timerStartStop() {
     const controls = document.querySelector('.timer-controls');
     const timerState = controls.getAttribute('data-timer');
     const startStop = document.querySelector('.timer-start-stop');
@@ -34,14 +68,19 @@ function timerStartStop() {
     // Start the timer
     if (timerState == 'start') {
         timerStart();
+        controls.setAttribute('data-timestart', new Date());
         controls.setAttribute('data-timer', 'stop');
         startStop.innerHTML = '<i class="fa-solid fa-stop"></i>Stop'
     } 
     // Stop the timer
     else {
         timerStop();
+        controls.setAttribute('data-timeend', new Date());
         controls.setAttribute('data-timer', 'start');
         startStop.innerHTML = '<i class="fa-solid fa-play"></i>Start'
+
+        // check if tiem is sufficient before recording activity
+        await recordActivity()
     }
 }
 
@@ -87,7 +126,7 @@ function timerStart() {
         timer.setAttribute('data-timer-minutes', minutes)
         timer.setAttribute('data-timer-seconds', seconds)
         updateTimerDisplay()
-    }, 1)
+    }, 1000)
 }
 
 function timerStop() {
