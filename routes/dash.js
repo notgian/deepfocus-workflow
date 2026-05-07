@@ -111,13 +111,13 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
 
             if (batteryLevel >= 75) {
                 energyStatus = "High Energy Day"
-                timerPreview = "50-min session";
+                timerPreview = "50-min sessions";
             } else if (batteryLevel >= 40) {
                 energyStatus = "Moderate Energy Day";
-                timerPreview = "25-min session";
+                timerPreview = "30-min sessions";
             } else {
                 energyStatus = "Low Energy Day";
-                timerPreview = "15-min session";
+                timerPreview = "20-min sessions";
                 isLowEnergy = true;
             }
 
