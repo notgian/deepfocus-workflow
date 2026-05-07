@@ -67,8 +67,20 @@
                 <h1>Good Morning, {{user.displayName}} 👋</h1>
                 <p>Let's make today your most focused day.</p>
             </div>
-            <div class="header-actions">
-                <img src="{{user.displayImage}}" class="avatar" referrerPolicy="no-referrer">
+            <div class="header-actions profile-dropdown-container">
+                <img src="{{user.displayImage}}" class="avatar" onclick="toggleProfileDropdown()" referrerPolicy="no-referrer">
+
+                <div id="profile-dropdown" class="dropdown-content">
+                    <div class="dropdown-info">
+                        <span class="user-name">{{user.displayName}}</span>
+                        <span class="user-email">{{user.email}}</span>
+                    </div>
+
+                    <a href="/auth/logout" class="logout-link">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+
             </div>
         </header>
     </main>
