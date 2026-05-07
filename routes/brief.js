@@ -80,32 +80,8 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
             allEvents = results.flat().sort((a, b) => a.rawStart - b.rawStart);
         }
 
-        // TODO: something ig
-        /* TEST FOR MISSION BRIEF */
-        const recentDumps = await BrainDump.find()
-            .sort({date: -1})
-            .limit(5)
-            .lean()
-
-        let brainDumps = []
-        for (let dump of recentDumps) {
-            brainDumps.push(dump.content)
-        }
-
-        let prompt = 'I will provide you a set of \"brain dumps\." Each brain dump is a brief description of the user\'s work at a point in time. These brain dumps are ordered in descending order, wherein the first is the most recent, and the last is the least recent. Each brain dump will be separated with three consecutive colons or :::. Analyze these brain dumps and generate a concise summary of a maximum of three sentences. If there is no need to use three sentences, then use less sentences to describe the brain dumps. The generated summary should be a brief description of where the user last left off in terms of their work. Speak in the second person, refering to the user as \"You." Following this sentence are each of the brain dumps in descending order.   '
-        prompt += brainDumps.join(' ::: ')
-
-        console.log(prompt)
-
-        const ai = new GoogleGenAI({});
-        const response = await ai.models.generateContent({
-            model: "gemini-3-flash-preview",
-            contents: prompt,
-        });
-        console.log(response.text);
 
         /* Render page */
-
         const renderOpts = {
             title: `Mission Brief | ${req.session.project.projectName}`,
             project: req.session.project,
@@ -116,6 +92,8 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
 
         if (allEvents.length > 0)
             renderOpts['events'] = allEvents;
+        if (req.session?.project?.brief)
+            renderOpts['brief'] = req.session.project.brief
         
         res.render('brief.hbs', renderOpts)
 
@@ -123,8 +101,53 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
         console.error('Calendar API Error:', error);
         res.status(500).send("Error fetching calendar data.");
     }
+})
 
+/* API LIKE FUNCTIONS*/
+router.post('/', async (req, res) => {
+    const userId = req?.session?.user?._id;
+    const projectId = req?.session?.project?._id;
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+    if (!projectId)
+        return res.status(400).json({message:'No project selected.'})
 
+    if (req.session?.project?.brief)
+        return res.status(200).json({
+            message: "Brief exists. Not generating a new one.", 
+            data: req.session.project.brief
+        })
+    
+    // TODO: something ig
+    // Generate mission brief, store it, then send it
+    const recentDumps = await BrainDump.find()
+        .sort({date: -1})
+        .limit(5)
+        .lean()
+
+    let brainDumps = []
+    for (let dump of recentDumps) {
+        brainDumps.push(dump.content)
+    }
+
+    let prompt = 'I will provide you a set of \"brain dumps\." Each brain dump is a brief description of the user\'s work at a point in time. These brain dumps are ordered in descending order, wherein the first is the most recent, and the last is the least recent. Each brain dump will be separated with three consecutive colons or :::. Analyze these brain dumps and generate a concise summary of a maximum of three sentences. If there is no need to use three sentences, then use less sentences to describe the brain dumps. The generated summary should be a brief description of where the user last left off in terms of their work. Speak in the second person, refering to the user as \"You." Each generated sentence must end in a period. Following this sentence are each of the brain dumps in descending order.   '
+    prompt += brainDumps.join(' ::: ')
+
+    console.log(prompt)
+    const ai = new GoogleGenAI({});
+    const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+    });
+    
+    // req.session.project.brief = "Generated text here";
+    req.session.project.brief = response.text;
+
+    return res.status(200).json({
+        message: "Brief generated.", 
+        data: req.session.project.brief
+    })
 })
 
 module.exports = {

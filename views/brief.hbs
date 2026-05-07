@@ -90,9 +90,11 @@
             <span class="card-text-right">
                 <h2>Where You Left Off</h2>
                 <div class="status-text">
-                    <p>You were finalizing UI/UX design pages for the dashboard.</p>
-                    <p>You defined key widgets, layout hierarchy, and user flows.</p>
-                    <p class="highlight">Next up: prepare the dashboard structure and component map.</p>
+                    {{#if brief}}
+                        <p class="brief-text" data-generated="yes">{{brief}}</p>
+                    {{else}}
+                        <p class="brief-text" data-generated="no">Generating brief summary of where you left off...</p>
+                    {{/if}}
                 </div>
             </span>
 
