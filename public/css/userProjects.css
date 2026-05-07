@@ -73,6 +73,14 @@ body {
     font-weight: 500;
 }
 
+.project-nav {
+    margin-bottom: 2em;
+}
+
+.project-nav > h3{
+    margin-left: 0.5em;
+}
+
 .nav-item.active {
     background: #f1f5f9;
     color: var(--primary-blue);
@@ -88,6 +96,12 @@ body {
 .main-content {
     flex-grow: 1;
     padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-body {
+    flex-grow: 1;
 }
 
 .content-header {
@@ -308,3 +322,4 @@ body {
     color: white;
     background-color: var(--primary-blue);
 }
+

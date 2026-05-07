@@ -15,10 +15,32 @@
         </div>
 
         <nav class="nav-menu">
-            <div class="nav-group">
-                <a href="/projects" class="nav-item active">
-                    <i class="fa-solid fa-cube"></i>
+            <div class="nav-group project-nav">
+                <a href="/projects" class="nav-item">
+                    <i class="fa-solid fa-arrow-left"></i>
                     Projects
+                </a>
+                <h3>{{project.projectName}}</h3>
+            </div>
+
+            <div class="nav-group">
+                <a href="/dash" class="nav-item">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+                <a href="/brief" class="nav-item active">
+                    <i class="fa-solid fa-bullseye"></i>
+                    Mission Brief
+                </a>
+
+                <a href="/focus" class="nav-item">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    Focus Timer
+                </a>
+
+                <a href="/notes" class="nav-item">
+                    <i class="fa-regular fa-note-sticky"></i>
+                    Notes and Links
                 </a>
             </div>
 
@@ -42,45 +64,13 @@
     <main class="main-content">
         <header class="content-header">
             <div class="header-titles">
-                <h1>Projects</h1>
-                <p>Choose what you want to focus on today.</p>
+                <h1>Good Morning, {{user.displayName}} 👋</h1>
+                <p>Let's make today your most focused day.</p>
             </div>
             <div class="header-actions">
                 <img src="{{user.displayImage}}" class="avatar" referrerPolicy="no-referrer">
             </div>
         </header>
-
-        <div class="action-bar">
-            <button class="new-project-btn" onclick="openProjectModal()">
-                <i class="fa-solid fa-plus"></i>
-                New Project
-            </button>
-        </div>
-
-        <section class="project-grid">
-            {{#if projects}}
-                {{#each projects}}
-                    <div class="project-card">
-                        <div class="card-header">
-                            <div class="project-icon-box purple-bg">
-                                <i class="fa-solid fa-cube"></i>
-                            </div>
-                            <div class="project-info">
-                                <h3>{{this.projectName}}</h3>
-                                <p>{{this.projectDesc}}</p>
-                            </div>
-                        </div>
-                        <button class="btn-outline" data-pid="{{this._id}}" onclick="openProject(this)">
-                            <i class="fa-solid fa-play"></i> Open Project
-                        </button>
-                    </div>
-                {{/each}}
-            {{else}}
-                No projects...
-            {{/if}}
-
-            <!-- Additional cards follow same structure -->
-        </section>
     </main>
 
     <span class="project-create-modal">
@@ -109,6 +99,25 @@
             </form>
 
         </div>
-
     </span>
 </div>
+
+
+{
+  "userId": {
+    "$oid": "69fad1c5e9591cf51e1b0d5b"
+  },
+  "projectId": {
+    "$oid": "69fb077274ac185138b40b36"
+  },
+  "title": "Note 1",
+  "content": "This note has content",
+}
+
+_id
+69fb077274ac185138b40b36
+
+ObjectId
+userId
+69fad1c5e9591cf51e1b0d5b
+
