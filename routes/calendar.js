@@ -137,6 +137,7 @@ router.get('/', async (req, res) => {
         const renderOpts = {
             title: 'Calendar | Deepfocus Workflow',
             css: ['/css/calendar.css'],
+            js: ['/js/sidebar.js'],
             user: req.session.user,
             calendars: calendars,
             events: allEvents,

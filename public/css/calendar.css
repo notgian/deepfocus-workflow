@@ -19,6 +19,9 @@ body {
     position: sticky;
     top: 0;
     height: 100vh;
+    z-index: 10;
+    margin-left: 0px;
+    transition: margin-left 0.25s ease;
 }
 
 .sidebar-header {
@@ -387,4 +390,27 @@ body {
 
 .save-btn:active {
     transform: scale(0.98);
+}
+
+/* sidebar toggle */
+.sidebar-open {
+    position: fixed;
+    font-size: 1rem;
+    left: 0px;
+    top: 30px;
+    padding: 10px;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    background-color: white;
+    border: 2px solid var(--border-light-grey);
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    color: black;
+    transition: 0.2s color;
+}
+
+.sidebar-toggle:hover {
+    color: var(--primary-blue);
 }
