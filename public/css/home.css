@@ -41,7 +41,8 @@ body {
 .logo-placeholder {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    /* background: linear-gradient(135deg, #4f46e5, #a855f7); */
+    background: white;
     border-radius: 50%; /* Just to make the empty tag visible */
 }
 
