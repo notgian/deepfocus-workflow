@@ -179,3 +179,8 @@
 .sidebar-toggle:hover {
     color: var(--primary-blue);
 }
+
+.main-content {
+    margin-left: 320px;
+    transition: margin-left 0.25s ease;
+}
