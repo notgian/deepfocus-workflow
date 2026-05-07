@@ -4,6 +4,7 @@ const User = require('../models/users');
 const getGoogleClient = require('../utils/googleAuth');
 const Projects = require('../models/projects.js');
 const { isUserSession, isUserProject } = require('../util/middlewares.js');
+const Notes = require('../models/notes.js');
 
 const router = express.Router();
 
@@ -126,6 +127,11 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
             req.session.energyStatus = energyStatus;
             req.session.timerPreview = timerPreview;
 
+            const notes = await Notes.find({ 
+                userId: req.session.user._id, 
+                projectId: req.session.project._id 
+            }).lean();
+
             res.render('dash.hbs', {
                 title: `Dashboard | ${req.session.project.projectName}`,
                 project: req.session.project,
@@ -137,7 +143,8 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
                 energyStatus: energyStatus,
                 timerPreview: timerPreview,
                 isLowEnergy: isLowEnergy,
-                events: allEvents
+                events: allEvents,
+                notes: notes
             });
     } catch (error) {
         console.error('Error in dashboard route:', error);

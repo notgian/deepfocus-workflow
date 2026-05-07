@@ -177,10 +177,22 @@
                     <i class="fa-solid fa-pen-clip"></i>
                 </div>
                 <div class="card-text-right">
-                    <h3>Notes</h3>
-                    <div class="status-text">
-                        <p class="brief-text">Your project notes will appear here.</p>
+                    <div class="schedule-header"> <h3>Recent Notes</h3>
+                        <a href="/notes" class="view-calendar-link">See All <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
+                    {{#if notes.length}}
+                        <ul class="notes-list">
+                            {{#each notes}}
+                                <li class="note-item">
+                                    <span class="note-content">{{this.title}}</span>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{else}}
+                        <p class="brief-text">No notes yet. Click to add your first note!</p>
+
+                    {{/if}}
+
                 </div>
             </div>
 
