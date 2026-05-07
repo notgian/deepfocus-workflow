@@ -158,9 +158,10 @@ body {
 /* Dashboard Specific */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
     gap: 24px;
     margin-bottom: 24px;
+    width: 100%;
 }
 
 .dashboard-bottom-row {
@@ -237,3 +238,119 @@ body {
     text-transform: uppercase;
     font-weight: 600;
 }
+
+/* SCHEDULE */
+.schedule-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+.date-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    min-width: 0;
+}
+
+.time {
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 70px;
+    font-size: 13px;
+    color: #555;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.event-title {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    flex-grow: 1;
+}
+
+.event-duration {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+/* Style the new link */
+.view-calendar-link {
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.view-calendar-link:hover {
+    opacity: 0.8;
+}
+
+.sprint-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.sprint-icon {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.sprint-time {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #0f172a;
+}
+
+.btn-focus{    
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--primary-blue); 
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+    text-decoration: none;
+}
+

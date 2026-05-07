@@ -110,18 +110,22 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
             let isLowEnergy = false;
 
             if (batteryLevel >= 75) {
-                energyStatus = "High Energy Day";
+                energyStatus = "High Energy Day"
+                timerPreview = "50-min session";
             } else if (batteryLevel >= 40) {
                 energyStatus = "Moderate Energy Day";
+                timerPreview = "25-min session";
             } else {
                 energyStatus = "Low Energy Day";
+                timerPreview = "15-min session";
                 isLowEnergy = true;
             }
 
             // Persist to session for the Focus Timer route later
             req.session.currentBattery = batteryLevel;
             req.session.energyStatus = energyStatus;
-           
+            req.session.timerPreview = timerPreview;
+
             res.render('dash.hbs', {
                 title: `Dashboard | ${req.session.project.projectName}`,
                 project: req.session.project,
@@ -131,6 +135,7 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
                 
                 batteryLevel: batteryLevel,
                 energyStatus: energyStatus,
+                timerPreview: timerPreview,
                 isLowEnergy: isLowEnergy,
                 events: allEvents
             });

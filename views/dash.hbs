@@ -98,7 +98,6 @@
 
                     <div class="forecast-text-minimal">
                         <h4 class="{{#if isLowEnergy}}low-energy-text{{/if}}">{{energyStatus}}</h4>
-                        <p>{{energyAdvice}}</p>
                     </div>
                 </div>
 
@@ -109,22 +108,20 @@
 
             <!-- Today's Schedule -->
             <div class="card">
-                <h3>Today's Schedule</h3>
+                <div class="schedule-header">
+                    <h3>Today's Schedule</h3>
+                    <a href="/calendar" class="view-calendar-link">Full Calendar <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
 
                 <div class="schedule-list">
                     {{#each events}}
                         <div class="schedule-item">
                             <div class="time">
-                                {{this.startTime}} - {{this.endTime}}
+                                {{this.startTime}}
                             </div>
 
                             <div class="event">
-                                <span 
-                                    class="event-dot" 
-                                    style="background-color: {{this.color}}"
-                                ></span>
                                 <div class="event-title">{{this.summary}}</div>
-
                                 <div class="event-duration">{{this.duration}} min</div>
                             </div>
                         </div>
@@ -133,9 +130,26 @@
             </div>
 
             <!-- Recommended focus sprint -->
-            <div class="card">
-                <h3>Recommended Focus Sprint</h3>
-                <p>coming soon</p>
+            <div class="card sprint-card">
+                <h3>Recommended Sprint</h3>
+                
+                <div class="sprint-content">
+                    <div class="sprint-icon">
+                        {{#if isLowEnergy}}
+                            <i class="fa-solid fa-battery-quarter low-energy-text"></i>
+                        {{else}}
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        {{/if}}
+                    </div>
+
+                    <p class="sprint-time">{{timerPreview}}</p>
+
+                    <div class="sprint-actions">
+                        <a href="/focus/{{project._id}}" class="btn-focus">
+                            <i class="fa-solid fa-play"></i> Start Focus Session
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </section>
