@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const Token = require('../models/tokens');
 
 async function getGoogleClient(userId) {
-    const tokenData = await Token.findOne({ userId });
+    const tokenData = await Token.findOne({ userId }).lean();
     if (!tokenData) return null;
 
     const oauth2Client = new google.auth.OAuth2(

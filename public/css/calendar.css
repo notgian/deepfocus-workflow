@@ -141,7 +141,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    min-height: 340px;
+    min-height: 200px;
 }
 
 .card-subtext {
