@@ -4,6 +4,7 @@ const User = require('../models/users');
 const getGoogleClient = require('../utils/googleAuth');
 const Projects = require('../models/projects.js');
 const { isUserSession, isUserProject } = require('../util/middlewares.js');
+const Notes = require('../models/notes.js');
 
 const router = express.Router();
 
@@ -111,13 +112,13 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
 
             if (batteryLevel >= 75) {
                 energyStatus = "High Energy Day"
-                timerPreview = "50-min session";
+                timerPreview = "50-min sessions";
             } else if (batteryLevel >= 40) {
                 energyStatus = "Moderate Energy Day";
-                timerPreview = "25-min session";
+                timerPreview = "30-min sessions";
             } else {
                 energyStatus = "Low Energy Day";
-                timerPreview = "15-min session";
+                timerPreview = "20-min sessions";
                 isLowEnergy = true;
             }
 
@@ -125,6 +126,11 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
             req.session.currentBattery = batteryLevel;
             req.session.energyStatus = energyStatus;
             req.session.timerPreview = timerPreview;
+
+            const notes = await Notes.find({ 
+                userId: req.session.user._id, 
+                projectId: req.session.project._id 
+            }).lean();
 
             res.render('dash.hbs', {
                 title: `Dashboard | ${req.session.project.projectName}`,
@@ -137,7 +143,8 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
                 energyStatus: energyStatus,
                 timerPreview: timerPreview,
                 isLowEnergy: isLowEnergy,
-                events: allEvents
+                events: allEvents,
+                notes: notes
             });
     } catch (error) {
         console.error('Error in dashboard route:', error);
