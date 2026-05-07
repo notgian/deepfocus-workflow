@@ -71,33 +71,76 @@
                 <img src="{{user.displayImage}}" class="avatar" referrerPolicy="no-referrer">
             </div>
         </header>
+
+        <div class="focus-grid">
+            <section class="card timer-card">
+                <div class="card-header">
+                    <span class="icon">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </span> 
+                    <h3>Focus Timer</h3>
+                    <span class="info-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </span>
+                </div>
+
+                <div class="session-selector">
+                    <button class="set-time-20 active" onclick="setTimer(20)">20 min</button>
+                    <button class="set-time-30" onclick="setTimer(30)">30 min</button>
+                    <button class="set-time-50" onclick="setTimer(50)">50 min</button>
+                </div>
+
+                <div class="timer-display">
+                    <div class="progress-ring">
+                        <div class="time-text">
+                            <h2>20:00</h2>
+                            <p>Micro Sprint</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-controls">
+                    <button class="timer-buttons btn-primary">
+                        <i class="fa-solid fa-play"></i>
+                        Start
+                    </button>
+                    <button class="timer-buttons btn-outline">
+                        <i class="fa-solid fa-pause"></i>
+                        Pause
+                    </button>
+                    <button class="timer-buttons btn-outline">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset
+                    </button>
+                </div>
+            </section>
+
+            <div class="sidebar-column">
+                <section class="card brain-dump">
+                    <div class="card-header">
+                        <span class="icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </span> 
+                        <h3>Brain Dump</h3>
+                    </div>
+                    <p class="subtext">Get your thoughts out so you can stay in focus.</p>
+                    <textarea placeholder="What did you finish? What blocked you? What should future you continue?"></textarea>
+                    <button class="btn-primary full-width">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Brain Dump
+                    </button>
+                </section>
+
+                <div class="card focus-tip">
+                    <span class="icon">✨</span>
+                    <div>
+                        <strong>Focus Tip</strong>
+                        <p>Protect your focus like your future depends on it. Because it does.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-    <span class="project-create-modal">
-        <div class="project-create-container">
-            <span class="project-create-header">
-                <h2>New Project</h2>
-                <span class="project-create-close" onclick="closeProjectModal()">
-                    <i class="fa-solid fa-xmark"></i>
-                </span>
-            </span>
-
-            <form id="project-create-form" class="project-create-form" method="POST" action="/projects">
-                <span class="input-group">
-                    <p>Project Name<p>
-                    <input type="text" name="projectName" placeholder="Enter project name..."/>
-                </span>
-
-                <span class="input-group">
-                    <p>Project Description</p>
-                    <textarea name="projectDesc" placeholder="Enter project description..."></textarea>
-                </span>
-
-                <button class="project-create-button">
-                    Create Project
-                </button>
-            </form>
-
-        </div>
-    </span>
 </div>

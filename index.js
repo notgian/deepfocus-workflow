@@ -63,6 +63,7 @@ const { userProjectRouter } = require('./routes/userProject.js')
 const { dashboardRouter } = require('./routes/dash.js')
 const { notesRouter } = require('./routes/notes.js')
 const { calendarRouter } = require('./routes/calendar.js')
+const { focusRouter } = require('./routes/focus.js')
 
 // construct the routes
 app.use('/auth', authRouter);
@@ -70,15 +71,10 @@ app.use('/projects', projectsRouter);
 app.use('/project', userProjectRouter);
 app.use('/dash', dashboardRouter);
 app.use('/notes', notesRouter);
-app.use('/projects', projectsRouter);  // 
 app.use('/calendar', calendarRouter);
+app.use('/focus', focusRouter);
 // app.use('/settings', mainRouter);  // This 
 // app.use('/analytics', mainRouter);  // This 
-// app.use('/calendar', mainRouter);  // This 
-// app.use('/project/', mainRouter);
-// app.use('/:projectid/brief', mainRouter);
-// app.use('/:projectid/focus', mainRouter);
-// app.use('/:projectid/notes', mainRouter);
 app.use('/', homeRouter);
 
 // Home page of the website, not the app
