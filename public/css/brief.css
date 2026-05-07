@@ -1,0 +1,286 @@
+:root {
+    --bg-color: #f8f9fc;
+    --card-border: #eef0f5;
+    --primary-blue: #2d5bff;
+    --text-dark: #1a1d23;
+    --text-light: #6b7280;
+}
+
+.main-content {
+    gap: 1rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-banner {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+/* Icon Boxes */
+.icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.icon-box.purple { background: #f0f2ff; color: #5c67ff; }
+.icon-box.blue { background: #f0f7ff; color: #2d5bff; }
+
+/* Banner */
+.project-banner { display: flex; align-items: center; gap: 1.2rem; }
+.banner-content .label { font-size: 0.8rem; color: var(--text-light); }
+.banner-content h2 { margin: 2px 0 0 0; font-size: 1.3rem; }
+
+/* Grid Layout for Middle Row */
+
+.card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.card-header h3 { font-size: 1.1rem; margin: 0; }
+
+.status-text {
+    color: var(--text-light);
+}
+
+.status-text p {
+    margin: 0.5rem 0;
+}
+
+.mission-container {
+    padding: 2.5rem;
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mission-intro h1 { font-size: 2rem; color: var(--text-dark); margin: 0; }
+.mission-intro p { color: var(--text-light); margin: 0.5rem 0 2rem 0; }
+
+.card {
+    background: #fff;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.card-text-right {
+   display: flex;
+   flex-direction: column;
+   gap: 0.8rem;
+   flex-grow: 1;
+}
+
+/* Icon Boxes */
+.icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.icon-box.purple { background: #f0f2ff; color: #5c67ff; }
+.icon-box.blue { background: #f0f7ff; color: #2d5bff; }
+
+/* Banner */
+.project-banner { display: flex; align-items: center; gap: 1.2rem; }
+.banner-content .label { font-size: 0.8rem; color: var(--text-light); }
+.banner-content h2 { margin: 2px 0 0 0; font-size: 1.3rem; }
+
+/* Grid Layout for Middle Row */
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.card-header h3 { font-size: 1.1rem; margin: 0; }
+
+/* Links List */
+.links-list { list-style: none; padding: 0; margin: 0; }
+.links-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.links-list li img { width: 20px; height: 20px; margin-right: 12px; border-radius: 4px; }
+.links-list li span { flex: 1; font-size: 0.95rem; color: #444; }
+.external-link { text-decoration: none; color: var(--primary-blue); font-weight: bold; }
+
+/* Task List */
+.task-list { list-style: none; padding: 0; }
+.task-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0;
+    gap: 1rem;
+}
+.task-num {
+    background: var(--primary-blue);
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.task-name { flex: 1; font-size: 0.95rem; }
+.task-time {
+    background: #f1f3f9;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Start Button */
+.btn-start-session {
+    width: 100%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .mission-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Task List */
+.task-list { list-style: none; padding: 0; }
+.task-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0;
+    gap: 1rem;
+}
+.task-num {
+    background: var(--primary-blue);
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.task-name { flex: 1; font-size: 0.95rem; }
+.task-time {
+    background: #f1f3f9;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Start Button */
+.btn-start-session {
+    width: 100%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .mission-grid { grid-template-columns: 1fr; }
+}
+
+
+/* SCHEDULE */
+
+.schedule-none {
+    color: var(--text-light)
+}
+
+.schedule-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.time {
+    width: 140px;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #555;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.event-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.event-title {
+    font-weight: 500;
+}
+
+.event-duration {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-gray);
+}

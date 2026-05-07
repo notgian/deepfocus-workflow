@@ -68,3 +68,24 @@ function openProject(el) {
 
     window.location.href = `/project/open?pid=${pid}`
 }
+
+async function deleteProject(id, name) {
+    name = name.trim()
+    const delConfirm1 = confirm(`Are you sure you want to delete the project '${name}'`)
+    if (!delConfirm1)
+        return
+    
+    const enterConfirm = prompt(`Please enter the name of the project, '${name},' to confirm its deletion.`)
+    if (enterConfirm.trim() != name)
+        return alert(`Incorrect name provided. Cannot delete the project '${name}'`)
+
+    const res = await fetch('/projects/'+id, {
+        method: 'DELETE'
+    });
+
+    const resJson = await res.json();
+    alert(resJson.message);
+
+    if (res.status == 200)
+        window.location.reload();
+}

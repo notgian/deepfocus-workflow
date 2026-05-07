@@ -1,11 +1,16 @@
 <div class="dashboard-container">
-    <aside class="sidebar">
+
+    <span class="sidebar-open sidebar-toggle" onclick="openSidebar()">
+        <i class="fa-solid fa-arrow-right"></i>
+    </span>
+
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <span class="sidebar-logo-section">
                 <img src="" class="sidebar-logo">
                 <span class="brand-name">DeepFocus Workflow</span>
             </span>
-            <span class="sidebar-toggle">
+            <span class="sidebar-toggle" onclick="closeSidebar()">
                 <i class="fa-solid fa-bars"></i>
             </span>
         </div>

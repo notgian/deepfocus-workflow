@@ -64,8 +64,8 @@
     <main class="main-content">
         <header class="content-header">
             <div class="header-titles">
-                <h1>Good Morning, {{user.displayName}} 👋</h1>
-                <p>Let's make today your most focused day.</p>
+                <h1>Mission Brief</h1>
+                <p>Clarity on the mission. Focus on what matters next.</p>
             </div>
             <div class="header-actions profile-dropdown-container">
                 <img src="{{user.displayImage}}" class="avatar" onclick="toggleProfileDropdown()" referrerPolicy="no-referrer">
@@ -83,53 +83,71 @@
 
             </div>
         </header>
-    </main>
 
-    <span class="project-create-modal">
-        <div class="project-create-container">
-            <span class="project-create-header">
-                <h2>New Project</h2>
-                <span class="project-create-close" onclick="closeProjectModal()">
-                    <i class="fa-solid fa-xmark"></i>
-                </span>
+        <section class="card project-banner">
+            <div class="icon-box purple">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+            <div class="banner-content">
+                <span class="label">Project</span>
+                <h2>DeepFocus Workflow — UI/UX Concept</h2>
+            </div>
+        </section>
+
+        <section class="card card-banner">
+            <div class="icon-box blue">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+
+            <span class="card-text-right">
+                <h2>Where You Left Off</h2>
+                <div class="status-text">
+                    {{#if brief}}
+                        <p class="brief-text" data-generated="yes">{{brief}}</p>
+                    {{else}}
+                        <p class="brief-text" data-generated="no">Generating brief summary of where you left off...</p>
+                    {{/if}}
+                </div>
             </span>
 
-            <form id="project-create-form" class="project-create-form" method="POST" action="/projects">
-                <span class="input-group">
-                    <p>Project Name<p>
-                    <input type="text" name="projectName" placeholder="Enter project name..."/>
-                </span>
+        </section>
 
-                <span class="input-group">
-                    <p>Project Description</p>
-                    <textarea name="projectDesc" placeholder="Enter project description..."></textarea>
-                </span>
+        <section class="card task-section card-banner">
+            <div class="icon-box blue">
+                <i class="fa-solid fa-calendar"></i>
+            </div>
+            <span class="card-text-right">
+                <h2>Today's Schedule</h2>
+                <div class="schedule-list">
+                    {{#if events}}
+                        {{#each events}}
+                            <div class="schedule-item">
+                                <div class="time">
+                                    {{this.startTime}} - {{this.endTime}}
+                                </div>
 
-                <button class="project-create-button">
-                    Create Project
-                </button>
-            </form>
+                                <div class="event">
+                                    <span 
+                                        class="event-dot" 
+                                        style="background-color: {{this.color}}"
+                                    ></span>
+                                    <div class="event-title">{{this.summary}}</div>
 
-        </div>
-    </span>
+                                    <div class="event-duration">{{this.duration}} min</div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                    <span class="schedule-none"> No events for today. </span>
+                    {{/if}}
+                </div>
+            </span>
+        </section>
+
+        <button class="btn-start-session" onclick="window.location.href='/focus'">
+            <span>▶</span> Start Focus Session
+        </button>
+    </main>
 </div>
 
-
-{
-  "userId": {
-    "$oid": "69fad1c5e9591cf51e1b0d5b"
-  },
-  "projectId": {
-    "$oid": "69fb077274ac185138b40b36"
-  },
-  "title": "Note 1",
-  "content": "This note has content",
-}
-
-_id
-69fb077274ac185138b40b36
-
-ObjectId
-userId
-69fad1c5e9591cf51e1b0d5b
 
