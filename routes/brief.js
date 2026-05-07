@@ -121,7 +121,7 @@ router.post('/', async (req, res) => {
     
     // TODO: something ig
     // Generate mission brief, store it, then send it
-    const recentDumps = await BrainDump.find()
+    const recentDumps = await BrainDump.find({_id: userId})
         .sort({date: -1})
         .limit(5)
         .lean()
@@ -129,6 +129,13 @@ router.post('/', async (req, res) => {
     let brainDumps = []
     for (let dump of recentDumps) {
         brainDumps.push(dump.content)
+    }
+
+    if (brainDumps.length == 0) {
+        return res.status(200).json({
+            message: "Cannot create summary. No brain dumps exist.", 
+            data: "Cannot create summary. No brain dumps exist."
+        })
     }
 
     let prompt = 'I will provide you a set of \"brain dumps\." Each brain dump is a brief description of the user\'s work at a point in time. These brain dumps are ordered in descending order, wherein the first is the most recent, and the last is the least recent. Each brain dump will be separated with three consecutive colons or :::. Analyze these brain dumps and generate a concise summary of a maximum of three sentences. If there is no need to use three sentences, then use less sentences to describe the brain dumps. The generated summary should be a brief description of where the user last left off in terms of their work. Speak in the second person, refering to the user as \"You." Each generated sentence must end in a period. Following this sentence are each of the brain dumps in descending order.   '
