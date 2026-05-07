@@ -6,13 +6,13 @@ const User = require('../models/users');
 const getGoogleClient = require('../utils/googleAuth');
 
 router.get('/', async (req, res) => {
-   
+
     if (!req.session.user)
-            return res.redirect('/auth/fakelogin')
+        return res.redirect('/auth/fakelogin')
 
     try {
         const user = await User.findById(req.session.user._id);
-        
+
         const oauth2Client = await getGoogleClient(req.session.user._id);
         if (!oauth2Client) return res.redirect('/auth/google');
 
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
         const calendarNames = {};
 
         const calendars = listResponse.data.items.map(cal => {
-            
+
             calendarColors[cal.id] = cal.backgroundColor; 
             calendarNames[cal.id] = cal.summary;
 
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
                     singleEvents: true,
                     orderBy: 'startTime'
                 });
-                
+
                 return response.data.items.map(event => {
                     const start = new Date(event.start.dateTime || event.start.date);
                     const end = new Date(event.end.dateTime || event.end.date);
@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
 
                     // Score = Duration * Final Weight
                     totalDrainScore += (duration * weight);
-                    
+
                     return {
                         summary: event.summary,
                         startTime: start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -106,7 +106,7 @@ router.get('/', async (req, res) => {
 
             batteryLevel = Math.max(0, Math.min(100, Math.round(100 - (totalDrainScore / DAILY_CAPACITY * 100))));
             req.session.currentBattery = batteryLevel;
-            
+
         }
 
         //GENERATE MESSAGES
@@ -134,7 +134,7 @@ router.get('/', async (req, res) => {
 
         console.log(`Rendering Dashboard - Battery: ${batteryLevel}%, Low Energy: ${isLowEnergy}`);
 
-         res.render('calendar.hbs', {
+        const renderOpts = {
             title: 'Calendar | Deepfocus Workflow',
             css: ['/css/calendar.css'],
             user: req.session.user,
@@ -145,7 +145,12 @@ router.get('/', async (req, res) => {
             energyAdvice,
             timerPreview,
             isLowEnergy
-        });
+        }
+
+        if (req.session?.project)
+            renderOpts['project'] = req.session.project;
+
+        res.render('calendar.hbs', renderOpts);
 
     } catch (error) {
         console.error('Calendar API Error:', error);
@@ -156,7 +161,7 @@ router.get('/', async (req, res) => {
 router.post('/update-selection', async (req, res) => {
     try {        
         let selection = req.body.calendarIds || [];
-   
+
         if (!Array.isArray(selection)) selection = [selection];
 
         // Save selection to the logged-in user's document

@@ -14,3 +14,12 @@
     box-sizing: border-box;
 }
 
+/* Sidebar for when there is a project open */
+.project-nav {
+    margin-bottom: 2em;
+}
+
+.project-nav > h3{
+    margin-left: 0.5em;
+}
+

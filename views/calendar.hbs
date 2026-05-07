@@ -11,13 +11,50 @@
         </div>
 
 
+
+
         <nav class="nav-menu">
+            {{#if project}}
+
+            <div class="nav-group project-nav">
+                <a href="/projects" class="nav-item">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Projects
+                </a>
+                <h3>{{project.projectName}}</h3>
+            </div>
+
+            <div class="nav-group">
+                <a href="/dash" class="nav-item">
+                    <i class="fa-solid fa-gauge"></i>
+                    Dashboard
+                </a>
+                <a href="/brief" class="nav-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                    Mission Brief
+                </a>
+
+                <a href="/focus" class="nav-item">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    Focus Timer
+                </a>
+
+                <a href="/notes" class="nav-item">
+                    <i class="fa-regular fa-note-sticky"></i>
+                    Notes and Links
+                </a>
+            </div>
+
+            {{else}}
+
             <div class="nav-group">
                 <a href="/projects" class="nav-item">
                     <i class="fa-solid fa-cube"></i>
                     Projects
                 </a>
             </div>
+
+            {{/if}}
 
             <div class="nav-group bottom-nav">
                 <a href="/calendar" class="nav-item active">

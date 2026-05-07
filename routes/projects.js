@@ -12,6 +12,9 @@ router.get('/', [isUserSession], async (req, res) => {
     const projects = await Projects.find({
         userId: req.session.user._id 
     }).lean();
+        
+    // unset the open project; closing it
+    req.session.project = undefined;
 
     res.render('projects.hbs', {
         title: 'Projects | Deepfocus Workflow',
