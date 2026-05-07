@@ -1,6 +1,10 @@
 const express = require('express');
 
 const Projects = require('../models/projects.js');
+const BrainDump = require('../models/braindumps.js');
+const Notes = require('../models/notes.js');
+
+
 const { isUserSession } = require('../util/middlewares.js');
 
 const router = express.Router();
@@ -36,7 +40,7 @@ router.post('/', async (req, res) => {
     const projectName = req.body?.projectName;
     const projectDesc = req.body?.projectDesc || ''; 
     const userId = req?.session?.user?._id
-    
+
     if (!userId)
         return res.status(401).json({message:'Unauthorized'})
     if (!projectName)
@@ -50,6 +54,28 @@ router.post('/', async (req, res) => {
         }).save();
 
         return res.status(200).json({message:'Project created successfuly.'})
+    } catch (err) {
+        return res.status(500).json({message: 'Server encountered an error. ' + err})
+    }
+})
+
+router.delete('/:projectId', async (req, res) => {
+    const userId = req?.session?.user?._id
+    
+    if (!userId)
+        return res.status(401).json({message:'Unauthorized'})
+
+    try {
+        const foundProject = await Projects.findOne({_id: req.params.projectId}).lean();
+
+        if (!foundProject)
+            return res.status(404).json({message:'Project does not exist.'})
+        
+        const deleteNotes = await Notes.deleteMany({projectId: req.params.projectId});
+        const deleteDumps = await BrainDump.deleteMany({projectId: req.params.projectId});
+        const deleteProject = await Projects.deleteOne({_id: req.params.projectId});
+
+        return res.status(200).json({message:'Project deleted successfuly.'})
     } catch (err) {
         return res.status(500).json({message: 'Server encountered an error. ' + err})
     }

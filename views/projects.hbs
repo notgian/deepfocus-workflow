@@ -62,12 +62,19 @@
                 {{#each projects}}
                     <div class="project-card">
                         <div class="card-header">
-                            <div class="project-icon-box purple-bg">
-                                <i class="fa-solid fa-cube"></i>
+                            <div class="card-header-left">
+                                <div class="project-icon-box purple-bg">
+                                    <i class="fa-solid fa-cube"></i>
+                                </div>
+                                <div class="project-info">
+                                    <h3>{{this.projectName}}</h3>
+                                    <p>{{this.projectDesc}}</p>
+                                </div>
                             </div>
-                            <div class="project-info">
-                                <h3>{{this.projectName}}</h3>
-                                <p>{{this.projectDesc}}</p>
+                            <div class="card-header-right">
+                                <span class="delete-project" onclick="deleteProject('{{this._id}}', '{{this.projectName}}')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </span>
                             </div>
                         </div>
                         <button class="btn-outline" data-pid="{{this._id}}" onclick="openProject(this)">

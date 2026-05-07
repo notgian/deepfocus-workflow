@@ -162,8 +162,26 @@ body {
 
 .card-header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 16px;
     margin-bottom: 20px;
+}
+
+.card-header-left {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.delete-project {
+    cursor: pointer; 
+    color: black;
+    transition: color 0.2s;
+}
+
+.delete-project:hover {
+    color: red;
 }
 
 .project-icon-box {
