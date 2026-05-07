@@ -121,7 +121,7 @@ router.post('/', async (req, res) => {
     
     // TODO: something ig
     // Generate mission brief, store it, then send it
-    const recentDumps = await BrainDump.find({_id: userId})
+    const recentDumps = await BrainDump.find({userId: userId, projectId: projectId})
         .sort({date: -1})
         .limit(5)
         .lean()
@@ -130,6 +130,8 @@ router.post('/', async (req, res) => {
     for (let dump of recentDumps) {
         brainDumps.push(dump.content)
     }
+
+    console.log(recentDumps)
 
     if (brainDumps.length == 0) {
         return res.status(200).json({
