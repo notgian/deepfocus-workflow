@@ -13,7 +13,7 @@ router.get('/', [isUserSession, isUserProject], async (req, res) => {
         project: req.session.project,
         user: req.session.user,
         css: ['/css/userProjects.css', '/css/focus.css'],
-        js: ['/js/userProjects.js', '/js/focus.js'],
+        js: ['/js/userProjects.js', '/js/focus.js', '/js/sidebar.js'],
     })
 })
 

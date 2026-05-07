@@ -23,7 +23,7 @@ router.get('/', [isUserSession], async (req, res) => {
     res.render('projects.hbs', {
         title: 'Projects | Deepfocus Workflow',
         css: ['/css/projects.css'],
-        js: ['/js/projects.js'],
+        js: ['/js/projects.js', '/js/sidebar.js'],
         user: req.session.user,
         projects: projects
     })
