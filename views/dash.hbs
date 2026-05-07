@@ -155,22 +155,32 @@
         </section>
 
         <section class="dashboard-bottom-row">
-            
-            <div class="card ai-brief-card">
-                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Mission Brief</h3>
-                <div class="card-body">
-                    {{#if project.missionBrief}}
-                        <p>{{project.missionBrief}}</p>
-                    {{else}}
-                        <p class="text-muted">No brief generated yet. Your next brain dump will appear here!</p>
-                    {{/if}}
+
+            <div class="card ai-brief-card card-horizontal">
+                <div class="icon-box blue">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div class="card-text-right">
+                    <h3>Mission Brief</h3>
+                    <div class="status-text">
+                        {{#if brief}}
+                            <p class="brief-text">{{brief}}</p>
+                        {{else}}
+                            <p class="brief-text">Generating brief summary...</p>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
 
-            <div class="card resources-card">
-                <h3><i class="fa-regular fa-bookmark"></i>Notes</h3>
-                <div class="card-body">
-                    
+            <div class="card notes-card card-horizontal">
+                <div class="icon-box blue">
+                    <i class="fa-solid fa-pen-clip"></i>
+                </div>
+                <div class="card-text-right">
+                    <h3>Notes</h3>
+                    <div class="status-text">
+                        <p class="brief-text">Your project notes will appear here.</p>
+                    </div>
                 </div>
             </div>
 

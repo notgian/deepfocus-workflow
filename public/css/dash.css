@@ -1,3 +1,9 @@
+:root {
+    --primary-blue: #2d5bff;
+    --text-light: #6b7280;
+    --border-light-grey: #eef0f5;
+}
+
 body {
     background-color: #f8fafc; /* Light gray from image background */
     font-family: 'Inter', sans-serif;
@@ -354,3 +360,36 @@ body {
     text-decoration: none;
 }
 
+/* Icon Boxes */
+.icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.icon-box.purple { background: #f0f2ff; color: #5c67ff; }
+.icon-box.blue { background: #f0f7ff; color: var(--primary-blue); }
+
+.status-text p.brief-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.card-horizontal {
+    flex-direction: row !important; /* Forces icon and text to sit side-by-side */
+    gap: 1.2rem;                  /* Spacing between the icon and the text block */
+    align-items: flex-start;      /* Keeps the icon aligned with the top of the title */
+}
+
+/* Wrapper for the text to ensure H3 and P still stack vertically on the right */
+.card-text-right {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+   flex-grow: 1;
+}
