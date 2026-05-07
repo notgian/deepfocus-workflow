@@ -1,0 +1,239 @@
+body {
+    background-color: #f8fafc; /* Light gray from image background */
+    font-family: 'Inter', sans-serif;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    min-width: 320px;
+    background: white;
+    border-right: 1px solid var(--border-light-grey);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+    margin-left: 0px;
+    transition: margin-left 0.25s ease;
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+    color: black;
+    transition: 0.2s color;
+}
+
+.sidebar-toggle:hover {
+    color: var(--primary-blue);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-logo-section > * {
+    margin: 0 5px;
+}
+
+.sidebar-logo {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    border-radius: 50%;
+}
+
+.nav-menu {
+    flex-grow: 1;
+    margin-top: 2.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    color: var(--text-gray);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.nav-item.active {
+    background: #f1f5f9;
+    color: var(--primary-blue);
+}
+
+.bottom-nav {
+    margin-top: 2rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1rem;
+}
+
+/* Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 3rem 4rem;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 1rem;
+    background: linear-gradient(135deg, #4f46e5, #a855f7);
+    border-radius: 50%;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.sidebar-open {
+    position: fixed;
+    font-size: 1rem;
+    left: 0px;
+    top: 30px;
+    padding: 10px;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    background-color: white;
+    border: 2px solid var(--border-light-grey);
+}
+
+/* Buttons */
+.btn-primary-filled {
+    width: 100%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.btn-outline {
+    width: 100%;
+    background: white;
+    color: var(--primary-blue);
+    border: 1px solid var(--border-light-grey);
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* Dashboard Specific */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.dashboard-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* CARD */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.card-subtext {
+    font-size: 13px;
+    padding-top: 5px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* ENERGY FORECAST */
+
+.forecast-content-minimal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;    
+    flex: 1;
+    padding: 20px 0;
+}
+
+.forecast-badge {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content; 
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #94a3b8;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Big Percentage Styling */
+.battery-percent-display {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+}
+
+.percent-num {
+    font-size: 56px; 
+    font-weight: 800;
+    color: var(--primary-blue);
+    letter-spacing: -1px;
+    display: inline-block;
+}
+
+.percent-label {
+    font-size: 14px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
